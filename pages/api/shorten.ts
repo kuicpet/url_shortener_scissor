@@ -14,11 +14,26 @@ export default async function shorten(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { originalUrl } = req.body;
+  const { originalUrl, customText } = req.body;
+  if (!originalUrl) {
+    return res.status(400).json({ error: 'Please enter a url' });
+  }
   try {
     // Generate a unique short url
-    const shortUrl = shortid.generate();
-
+    let shortUrl: string;
+    if (customText) {
+      const existingUrl = await Url.findOne({ shortUrl: customText });
+      if (existingUrl) {
+        res.status(400).json({
+          success: false,
+          massage: 'Custom text already exists.Please choose another',
+        });
+        return;
+      }
+      shortUrl = customText;
+    } else {
+      shortUrl = shortid.generate();
+    }
     // add url to db
     const url: IUrl = await Url.create({
       originalUrl,
