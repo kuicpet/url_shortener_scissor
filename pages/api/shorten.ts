@@ -8,7 +8,7 @@ import shortid from 'shortid';
 import Url, { IUrl } from '../../models/Url';
 //import User, { IUser } from '../../models/User';
 
-mongoose.connect(`${process.env.MONGODB_URI}`);
+mongoose.connect(`${process.env.NEXT_PUBLIC_MONGODB_URI}`);
 
 export default async function shorten(
   req: NextApiRequest,
