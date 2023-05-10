@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import QRCode from 'qrcode.react';
 
 const ShortenForm = () => {
   const [originalUrl, setOriginalUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
   const [customText, setCustomText] = useState('');
+  const [showQrCode, setShowQrCode] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -16,6 +18,7 @@ const ShortenForm = () => {
         customText,
       });
       setShortUrl(response.data.shortUrl);
+      setShowQrCode(true);
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -45,6 +48,12 @@ const ShortenForm = () => {
             <a href={shortUrl} target="_blank" rel="noopener noreferrer">
               {shortUrl}
             </a>
+            {showQrCode && (
+              <div>
+                <p>QR Code:</p>
+                <QRCode value={shortUrl} size={128} />
+              </div>
+            )}
           </div>
         )}
       </form>
