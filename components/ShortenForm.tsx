@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import QRCode from 'qrcode.react';
+import { saveAs } from 'file-saver';
 
 const ShortenForm = () => {
+  const qrCodeRef = useRef<any>(null);
   const [originalUrl, setOriginalUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
   const [customText, setCustomText] = useState('');
@@ -19,6 +21,12 @@ const ShortenForm = () => {
       });
       setShortUrl(response.data.shortUrl);
       setShowQrCode(true);
+      if (qrCodeRef.current) {
+        const canvas = qrCodeRef.current.getElementByTagName('canvas')[0];
+        canvas.toBlob((blob: any) => {
+          saveAs(blob, 'qrcode.png');
+        });
+      }
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -51,7 +59,20 @@ const ShortenForm = () => {
             {showQrCode && (
               <div>
                 <p>QR Code:</p>
-                <QRCode value={shortUrl} size={128} />
+                <QRCode value={shortUrl} size={128} ref={qrCodeRef} />
+                <button
+                  onClick={() => {
+                    if (qrCodeRef.current) {
+                      const canvas =
+                        qrCodeRef.current.getElementByTagName('canvas')[0];
+                      canvas.toBlob((blob: any) => {
+                        saveAs(blob, 'qrcode.png');
+                      });
+                    }
+                  }}
+                >
+                  Download QR Code
+                </button>
               </div>
             )}
           </div>
