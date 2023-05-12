@@ -42,7 +42,7 @@ export default async function shorten(
     // send response to client
     res.status(201).json({
       success: true,
-      shortUrl: `${process.env.BASE_URL}/${url.shortUrl}`,
+      shortUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/${url.shortUrl}`,
     });
   } catch (error) {
     console.error(error);

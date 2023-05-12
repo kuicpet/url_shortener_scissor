@@ -14,7 +14,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="sm:p-8 px-4 py-8 w-full bg-black min-h-[calc(100vh-73px)]">
-        <h1 className="text-3xl text-center">Scissor URL Shortener</h1>
+        <h1 className="text-3xl text-center m-3">Scissor URL Shortener</h1>
         <ShortenForm />
       </main>
       <Footer />

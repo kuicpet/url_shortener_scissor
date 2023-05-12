@@ -39,16 +39,16 @@ const ShortenForm = () => {
     <section className="grid  lg:grid-cols-2 mx-auto p-2 gap-2 ">
       <div className="">
         <form onSubmit={handleSubmit} className="mt-16 max-w-3xl p-3">
-          <div className="flex flex-col  gap-5">
+          <div className="flex flex-col  gap-5 items-center">
             <input
-              className="bg-gray border-2  border-white text-white text-sm  focus:ring-black focus:border-black outline-none block w-full lg:w-3/4 p-3 rounded-md"
+              className="bg-gray  text-white text-sm  focus:ring-black focus:border-black outline-none block w-full lg:w-3/4 p-3 rounded-md"
               type="url"
               placeholder="Enter a URL to shorten"
               value={originalUrl}
               onChange={(e) => setOriginalUrl(e.target.value)}
             />
             <input
-              className="bg-gray border-2  border-white text-white text-sm  focus:ring-black focus:border-black outline-none block w-full lg:w-3/4 p-3 rounded-md"
+              className="bg-gray text-white text-sm  focus:ring-black focus:border-black outline-none block w-full lg:w-3/4 p-3 rounded-md"
               type="text"
               placeholder="Enter a Custom Text"
               value={customText}
@@ -56,14 +56,19 @@ const ShortenForm = () => {
             />
             <button
               type="submit"
-              className="mt-3 font-medium  border-2 rounded-md text-sm w-full lg:w-3/4 sm:w-auto px-5 py-2.5 text-center"
+              disabled={!originalUrl}
+              className="disabled:cursor-not-allowed bg-gradient-to-r to-green-400 from-blue-500 mt-3 hover:from-pink-500 hover:to-yellow-500 font-bold outline-none border-none rounded-md text-sm w-full lg:w-3/4 sm:w-auto px-5 py-2.5 text-center text-white"
             >
               {loading ? 'Shortening...' : 'Shorten'}
             </button>
           </div>
         </form>
       </div>
-      <div className="border border-white rounded-lg p-3 w-3/4 mx-auto">
+      <div
+        className={
+          shortUrl && `border border-white rounded-lg p-3 w-3/4 mx-auto`
+        }
+      >
         {shortUrl && (
           <div className="">
             <div className="my-3 border p-2 rounded-lg text-center">
