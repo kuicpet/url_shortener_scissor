@@ -10,7 +10,7 @@ const Footer = () => {
           href="https://github.com/kuicpet"
           target="_blank"
           rel="noreferrer"
-          className="border-2 border-black px-2 py-1 rounded-md text-white"
+          className="border-2 border-white px-2 py-1 rounded-md text-white"
         >
           Kingsley Umujeyan
         </a>{' '}
