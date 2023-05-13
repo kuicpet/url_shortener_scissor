@@ -73,7 +73,7 @@ const ShortenForm = () => {
       </div>
       <div
         className={
-          shortUrl && `border border-white rounded-lg p-3 w-3/4 mx-auto`
+          shortUrl && `border border-white rounded-lg p-3 lg:w-3/4 mx-auto`
         }
       >
         {shortUrl && (
