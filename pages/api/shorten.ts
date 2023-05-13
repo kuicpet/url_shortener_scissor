@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import mongoose from 'mongoose';
+// import mongoose from 'mongoose';
 import shortid from 'shortid';
+import { connect, disconnect } from '../../utils/db';
 // import bcrypt from 'bcrypt';
 // import jwt from 'jsonwebtoken';
 // import cookie from 'cookie-parser';
@@ -8,7 +9,7 @@ import shortid from 'shortid';
 import Url, { IUrl } from '../../models/Url';
 //import User, { IUser } from '../../models/User';
 
-mongoose.connect(`${process.env.NEXT_PUBLIC_MONGODB_URI}`);
+// mongoose.connect(`${process.env.NEXT_PUBLIC_MONGODB_URI}`);
 
 export default async function shorten(
   req: NextApiRequest,
@@ -19,6 +20,7 @@ export default async function shorten(
     return res.status(400).json({ error: 'Please enter a url' });
   }
   try {
+    await connect();
     // Generate a unique short url
     let shortUrl: string;
     if (customText) {
@@ -35,14 +37,14 @@ export default async function shorten(
       shortUrl = shortid.generate();
     }
     // add url to db
-    const url: IUrl = await Url.create({
-      originalUrl,
-      shortUrl,
+    const newUrl = await Url.create({
+      originalUrl: originalUrl,
+      shortUrl: shortUrl,
     });
     // send response to client
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
-      shortUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/${url.shortUrl}`,
+      shortUrl: newUrl.shortUrl,
     });
   } catch (error) {
     console.error(error);

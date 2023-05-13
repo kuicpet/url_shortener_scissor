@@ -1,4 +1,4 @@
-import { Document, Schema, model } from 'mongoose';
+import { Document, Schema, model, models } from 'mongoose';
 // eslint-disable-next-line prettier/prettier
 
 export interface IUrl extends Document {
@@ -22,4 +22,5 @@ const urlSchema = new Schema<IUrl>({
   },
 });
 
-export default model<IUrl>('Url', urlSchema);
+const Url = models.Url || model<IUrl>('Url', urlSchema);
+export default Url;
