@@ -2,16 +2,20 @@ import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import QRCode from 'qrcode.react';
 import { saveAs } from 'file-saver';
+import Confetti from 'react-confetti';
+import { toast, Toaster } from 'react-hot-toast';
 import Loader from './Loader';
 
-const ShortenForm = () => {
+const ShortenForm: React.FC = () => {
   const qrCodeRef = useRef<any>(null);
+
   const [originalUrl, setOriginalUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
   const [customText, setCustomText] = useState('');
   const [showQrCode, setShowQrCode] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,6 +30,11 @@ const ShortenForm = () => {
         originalUrl,
         customText,
       });
+      toast.success(response.data.message);
+      setShowConfetti(true);
+      setTimeout(() => {
+        setShowConfetti(false);
+      }, 5000);
       setShortUrl(response.data.shortUrl);
       setShowQrCode(true);
       if (qrCodeRef.current) {
@@ -35,8 +44,9 @@ const ShortenForm = () => {
         });
       }
       setLoading(false);
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
+      toast.error(error.response.data.message);
     } finally {
       setLoading(false);
     }
@@ -44,6 +54,10 @@ const ShortenForm = () => {
   return (
     <section className="grid  lg:grid-cols-2 mx-auto p-2 gap-2 ">
       <div className="">
+        <Toaster />
+        {showConfetti && (
+          <Confetti width={window.innerWidth} height={window.innerHeight} />
+        )}
         <form onSubmit={handleSubmit} className="mt-16 max-w-3xl p-3">
           <div className="flex flex-col  gap-5 items-center">
             <input

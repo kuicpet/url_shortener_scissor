@@ -21,7 +21,17 @@ export default async function shorten(
     return res.status(400).json({ error: 'Please enter a url' });
   }
   try {
+    // Connect to db
     await connect();
+
+    // Check if originalurl already exists in db
+    const existingOriginalurl = await Url.findOne({ originalUrl });
+    if (existingOriginalurl) {
+      return res.status(400).json({
+        success: false,
+        message: 'This Url has already been shortened',
+      });
+    }
     // Generate a unique short url
     let shortUrl: string;
     if (customText) {
@@ -45,6 +55,7 @@ export default async function shorten(
     // send response to client
     return res.status(201).json({
       success: true,
+      message: 'Url successfully shortened',
       shortUrl: newUrl.shortUrl,
     });
   } catch (error) {
