@@ -73,9 +73,15 @@ const ShortenForm = () => {
       </div>
       <div
         className={
-          shortUrl && `border border-white rounded-lg p-3 lg:w-3/4 mx-auto`
+          shortUrl &&
+          `border border-white rounded-lg p-3 lg:w-3/4 mx-auto relative`
         }
       >
+        {loading && (
+          <div className="absolute inset-0 z-0 flex justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg">
+            <Loader />
+          </div>
+        )}
         {shortUrl && (
           <div className="">
             <div className="my-3 border p-2 rounded-lg text-center">
