@@ -10,6 +10,7 @@ export default async function redirect(
   try {
     await connect();
     const url = await Url.findOne({ shortUrl: slug });
+    console.log(url);
     if (url) {
       url.save();
       res.redirect(url.originalUrl);
