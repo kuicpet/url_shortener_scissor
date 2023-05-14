@@ -5,6 +5,7 @@ import { saveAs } from 'file-saver';
 import Confetti from 'react-confetti';
 import { toast, Toaster } from 'react-hot-toast';
 import Loader from './Loader';
+import Button from './Button';
 
 const ShortenForm: React.FC = () => {
   const qrCodeRef = useRef<any>(null);
@@ -75,13 +76,13 @@ const ShortenForm: React.FC = () => {
               value={customText}
               onChange={(e) => setCustomText(e.target.value)}
             />
-            <button
-              type="submit"
+            <Button
+              loading={loading}
               disabled={!originalUrl}
-              className="disabled:cursor-not-allowed disabled:bg-gray-500 enabled:bg-gradient-to-r to-green-400 from-blue-500 mt-3  font-bold outline-none border-none rounded-md text-sm w-full lg:w-3/4 sm:w-auto px-5 py-2.5 text-center text-white"
-            >
-              {loading ? 'Shortening...' : 'Shorten'}
-            </button>
+              text="Shorten"
+              type="submit"
+              className='"disabled:cursor-not-allowed disabled:bg-gray-500 enabled:bg-gradient-to-r to-green-400 from-blue-500 mt-3  font-bold outline-none border-none rounded-md text-sm w-full lg:w-3/4 sm:w-auto px-5 py-2.5 text-center text-white"'
+            />
           </div>
         </form>
       </div>

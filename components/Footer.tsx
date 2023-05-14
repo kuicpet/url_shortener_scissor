@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Footer = () => {
+const Footer: React.FC = () => {
   const date = new Date().getFullYear();
   return (
     <footer className="flex items-center justify-center m-5">
