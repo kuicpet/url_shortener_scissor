@@ -6,6 +6,7 @@ import Confetti from 'react-confetti';
 import { toast, Toaster } from 'react-hot-toast';
 import Loader from './Loader';
 import Button from './Button';
+import { IUrl } from '../models/Url';
 
 const ShortenForm: React.FC = () => {
   const qrCodeRef = useRef<any>(null);
@@ -17,6 +18,7 @@ const ShortenForm: React.FC = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [urlDetails, setUrlDetails] = useState<IUrl | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,6 +39,7 @@ const ShortenForm: React.FC = () => {
         setShowConfetti(false);
       }, 5000);
       setShortUrl(response.data.shortUrl);
+      setUrlDetails(response.data);
       setShowQrCode(true);
       if (qrCodeRef.current) {
         const canvas = qrCodeRef.current.getElementByTagName('canvas')[0];
@@ -44,6 +47,7 @@ const ShortenForm: React.FC = () => {
           saveAs(blob, 'qrcode.png');
         });
       }
+
       setLoading(false);
     } catch (error: any) {
       console.error(error);
