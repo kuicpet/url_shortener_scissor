@@ -48,10 +48,11 @@ export default async function shorten(
       shortUrl = shortid.generate();
     }
     // add url to db
-    const newUrl = await Url.create({
+    const newUrl: IUrl = await Url.create({
       originalUrl: originalUrl,
       shortUrl: shortUrl,
     });
+    await newUrl.save();
     // send response to client
     return res.status(201).json({
       success: true,

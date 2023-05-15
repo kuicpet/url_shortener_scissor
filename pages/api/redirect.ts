@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import Url from '../../models/Url';
+import Url, { IUrl } from '../../models/Url';
 import { connect, disconnect } from '../../utils/db';
 
 export default async function redirect(
@@ -9,7 +9,7 @@ export default async function redirect(
   const { slug } = req.query;
   try {
     await connect();
-    const url = await Url.findOne({ shortUrl: slug });
+    const url: IUrl | null = await Url.findOne({ shortUrl: slug });
     console.log(url);
     if (url) {
       url.save();
@@ -21,7 +21,7 @@ export default async function redirect(
     console.error(error);
     res.status(500).json({
       success: false,
-      message: 'n error occurred while redirecting',
+      message: 'An error occurred while redirecting',
     });
   }
 }
