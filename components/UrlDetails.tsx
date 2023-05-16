@@ -10,10 +10,10 @@ const UrlDetails: React.FC<UrlDetailsProps> = ({ url }) => {
       <h2>Url Details</h2>
       <p>Original Url: {url.originalUrl}</p>
       <p>Short Url: {url.shortUrl}</p>
-      <p>Clicks: {url.clicks.length}</p>
+      <p>Clicks: {url?.clicks?.length}</p>
       <h3>Visitor IP Addresses:</h3>
       <ul>
-        {url.clicks.map((click) => (
+        {url?.clicks?.map((click) => (
           <li key={click.ipAddress}>{click.ipAddress}</li>
         ))}
       </ul>

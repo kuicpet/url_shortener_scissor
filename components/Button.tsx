@@ -6,7 +6,7 @@ interface IButton {
   onClick?: () => void;
   loading?: boolean;
   className: string;
-  disabled: boolean;
+  disabled?: boolean;
 }
 const Button: React.FC<IButton> = ({
   text,

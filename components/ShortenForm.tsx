@@ -56,6 +56,14 @@ const ShortenForm: React.FC = () => {
       setLoading(false);
     }
   };
+
+  const downLoadQrCode = () => {
+    const canvas = document.getElementById('qrcode') as HTMLCanvasElement;
+    const image = canvas.toDataURL('image/png');
+    saveAs(image, 'qrcode.png');
+    toast.success('Image downloaded successfully');
+  };
+
   return (
     <section className="grid  lg:grid-cols-2 mx-auto p-2 gap-2 ">
       <div className="">
@@ -117,23 +125,19 @@ const ShortenForm: React.FC = () => {
               <div className="flex flex-col items-center border text-center p-2 rounded-lg ">
                 <p>QR Code:</p>
                 <div className="p-2 w-[136px] h-[136px] border border-3 rounded-lg m-5 flex items-center justify-center">
-                  <QRCode value={shortUrl} size={120} ref={qrCodeRef} />
+                  <QRCode
+                    value={shortUrl}
+                    size={120}
+                    ref={qrCodeRef}
+                    id="qrcode"
+                  />
                 </div>
-                <button
+                <Button
+                  onClick={downLoadQrCode}
                   type="button"
-                  className="mt-3 font-medium  border-2 rounded-md text-sm w-full lg:w-3/4 sm:w-auto px-5 py-2.5 text-center"
-                  onClick={() => {
-                    if (qrCodeRef.current) {
-                      const canvas =
-                        qrCodeRef.current.getElementByTagName('canvas')[0];
-                      canvas.toBlob((blob: any) => {
-                        saveAs(blob, 'qrcode.png');
-                      });
-                    }
-                  }}
-                >
-                  Download QR Code
-                </button>
+                  text="Download QR Code"
+                  className="mt-3 font-medium border-2 rounded-md text-sm w-full lg:w-3/4 sm:w-auto px-5 py-2.5 text-center bg-gradient-to-r hover:from-pink-500 hover:to-yellow-500"
+                />
               </div>
             )}
           </div>
