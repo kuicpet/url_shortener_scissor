@@ -8,6 +8,7 @@ import Loader from './Loader';
 import Button from './Button';
 import { IUrl } from '../models/Url';
 
+const BaseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 const ShortenForm: React.FC = () => {
   const qrCodeRef = useRef<any>(null);
 
@@ -142,7 +143,7 @@ const ShortenForm: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {`http://localhost:3000/${shortUrl}`}
+                {`${shortUrl}`}
               </a>
               <Button
                 type="button"
