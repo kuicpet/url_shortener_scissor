@@ -33,25 +33,33 @@ const ShortenForm: React.FC = () => {
         originalUrl,
         customText,
       });
-      toast.success(response.data.message);
+      toast.success(response.data.message, {
+        style: {
+          color: 'green',
+        },
+      });
       setShowConfetti(true);
       setTimeout(() => {
         setShowConfetti(false);
-      }, 5000);
+      }, 6000);
       setShortUrl(response.data.shortUrl);
       setUrlDetails(response.data);
       setShowQrCode(true);
-      if (qrCodeRef.current) {
+      /* if (qrCodeRef.current) {
         const canvas = qrCodeRef.current.getElementByTagName('canvas')[0];
         canvas.toBlob((blob: any) => {
           saveAs(blob, 'qrcode.png');
         });
-      }
+      }*/
 
       setLoading(false);
     } catch (error: any) {
       console.error(error);
-      toast.error(error.response.data.message);
+      toast.error(error.response.data.message, {
+        style: {
+          color: 'red',
+        },
+      });
     } finally {
       setLoading(false);
     }
@@ -61,7 +69,23 @@ const ShortenForm: React.FC = () => {
     const canvas = document.getElementById('qrcode') as HTMLCanvasElement;
     const image = canvas.toDataURL('image/png');
     saveAs(image, 'qrcode.png');
-    toast.success('Image downloaded successfully');
+    toast.success('Image downloaded successfully', {
+      style: { color: 'green' },
+    });
+  };
+
+  const copyShortUrl = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      toast.success('Url copied to clipboard');
+    } catch (error) {
+      console.error('Error copying to clipboard:', error);
+      toast.error('An error occurred while copying the Url', {
+        style: {
+          color: 'red',
+        },
+      });
+    }
   };
 
   return (
@@ -114,12 +138,20 @@ const ShortenForm: React.FC = () => {
             <div className="my-3 border p-2 rounded-lg text-center">
               <p className="">Your shortened Url:</p>
               <a
-                href={`api/redirect`}
+                href={`api/redirect/${shortUrl}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 {`http://localhost:3000/${shortUrl}`}
               </a>
+              <Button
+                type="button"
+                text="Copy"
+                className="mt-3 lg:ml-5 font-medium border-2 rounded-md text-sm w-full lg:w-1/4 sm:w-auto px-5 py-1 text-center bg-gradient-to-r hover:from-pink-500 hover:to-yellow-500"
+                onClick={() =>
+                  copyShortUrl(`http://localhost:3000/${shortUrl}`)
+                }
+              />
             </div>
             {showQrCode && (
               <div className="flex flex-col items-center border text-center p-2 rounded-lg ">

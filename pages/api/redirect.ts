@@ -10,10 +10,10 @@ export default async function redirect(
   try {
     await connect();
     const url: IUrl | null = await Url.findOne({ shortUrl: slug });
-    console.log(url);
+    console.log(slug);
     if (url) {
       url.save();
-      res.redirect(url.originalUrl);
+      return res.redirect(url.originalUrl);
     } else {
       return res.status(404).json({ success: false, message: 'Url not Found' });
     }
