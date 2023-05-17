@@ -1,12 +1,13 @@
 import React from 'react';
 
 interface IButton {
-  text: string;
+  text?: string;
   type?: 'button' | 'submit' | 'reset';
   onClick?: () => void;
   loading?: boolean;
   className: string;
   disabled?: boolean;
+  icon?: JSX.Element;
 }
 const Button: React.FC<IButton> = ({
   text,
@@ -15,6 +16,7 @@ const Button: React.FC<IButton> = ({
   loading = false,
   className,
   disabled,
+  icon,
 }) => {
   return (
     <button
@@ -23,7 +25,10 @@ const Button: React.FC<IButton> = ({
       className={className}
       disabled={disabled}
     >
-      {!loading ? <>{text}</> : 'Shortening...'}
+      <span>
+        {!loading ? <>{text}</> : 'Shortening...'}
+        {icon}
+      </span>
     </button>
   );
 };

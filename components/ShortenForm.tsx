@@ -4,6 +4,7 @@ import QRCode from 'qrcode.react';
 import { saveAs } from 'file-saver';
 import Confetti from 'react-confetti';
 import { toast, Toaster } from 'react-hot-toast';
+// import { MdOutlineContentCopy } from 'react-icons/md';
 import Loader from './Loader';
 import Button from './Button';
 import { IUrl } from '../models/Url';
@@ -58,7 +59,8 @@ const ShortenForm: React.FC = () => {
       console.error(error);
       toast.error(error.response.data.message, {
         style: {
-          color: 'red',
+          color: 'white',
+          backgroundColor: 'red',
         },
       });
     } finally {
@@ -83,7 +85,8 @@ const ShortenForm: React.FC = () => {
       console.error('Error copying to clipboard:', error);
       toast.error('An error occurred while copying the Url', {
         style: {
-          color: 'red',
+          color: 'white',
+          backgroundColor: 'red',
         },
       });
     }
@@ -134,6 +137,7 @@ const ShortenForm: React.FC = () => {
             <Loader />
           </div>
         )}
+
         {shortUrl && (
           <div className="">
             <div className="my-3 border p-2 rounded-lg text-center">
@@ -145,6 +149,7 @@ const ShortenForm: React.FC = () => {
               >
                 {`${shortUrl}`}
               </a>
+
               <Button
                 type="button"
                 text="Copy"
