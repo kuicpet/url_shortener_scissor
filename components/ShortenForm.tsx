@@ -73,14 +73,19 @@ const ShortenForm: React.FC = () => {
     const image = canvas.toDataURL('image/png');
     saveAs(image, 'qrcode.png');
     toast.success('Image downloaded successfully', {
-      style: { color: 'green' },
+      style: { color: 'white', backgroundColor: 'green' },
     });
   };
 
   const copyShortUrl = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
-      toast.success('Url copied to clipboard');
+      toast.success('Url copied to clipboard', {
+        style: {
+          color: 'white',
+          backgroundColor: 'green',
+        },
+      });
     } catch (error) {
       console.error('Error copying to clipboard:', error);
       toast.error('An error occurred while copying the Url', {
@@ -141,7 +146,7 @@ const ShortenForm: React.FC = () => {
         {shortUrl && (
           <div className="">
             <div className="my-3 border p-2 rounded-lg text-center">
-              <p className="">Your shortened Url:</p>
+              <p className="">Shortened Url</p>
               <a
                 href={`api/redirect/${shortUrl}`}
                 target="_blank"
@@ -161,14 +166,16 @@ const ShortenForm: React.FC = () => {
             </div>
             {showQrCode && (
               <div className="flex flex-col items-center border text-center p-2 rounded-lg ">
-                <p>QR Code:</p>
-                <div className="p-2 w-[136px] h-[136px] border border-3 rounded-lg m-5 flex items-center justify-center">
-                  <QRCode
-                    value={shortUrl}
-                    size={120}
-                    ref={qrCodeRef}
-                    id="qrcode"
-                  />
+                <p>QR Code</p>
+                <div className="h-[144px] border-[8px] w-[144px] rounded-lg flex items-center justify-center p-2 m-2">
+                  <div className="p-2 w-[136px] h-[136px] border-[16px]  rounded-lg m-5 flex items-center justify-center bg-white">
+                    <QRCode
+                      value={shortUrl}
+                      size={120}
+                      ref={qrCodeRef}
+                      id="qrcode"
+                    />
+                  </div>
                 </div>
                 <Button
                   onClick={downLoadQrCode}
