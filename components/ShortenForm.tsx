@@ -9,7 +9,7 @@ import Loader from './Loader';
 import Button from './Button';
 import { IUrl } from '../models/Url';
 
-const BaseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 const ShortenForm: React.FC = () => {
   const qrCodeRef = useRef<any>(null);
 
@@ -38,7 +38,8 @@ const ShortenForm: React.FC = () => {
       });
       toast.success(response.data.message, {
         style: {
-          color: 'green',
+          color: 'white',
+          backgroundColor: 'green',
         },
       });
       setShowConfetti(true);
@@ -171,7 +172,7 @@ const ShortenForm: React.FC = () => {
                 text="Copy"
                 className="mt-3 lg:ml-5 font-medium border-2 rounded-md text-sm w-full lg:w-1/4 sm:w-auto px-5 py-1 text-center bg-gradient-to-r hover:from-pink-500 hover:to-yellow-500"
                 onClick={() =>
-                  copyShortUrl(`localhost:3000/api/redirect/${shortUrl}`)
+                  copyShortUrl(`${baseUrl}/api/redirect/${shortUrl}`)
                 }
               />
             </div>

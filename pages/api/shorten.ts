@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import shortid from 'shortid';
-import { connect, disconnect } from '../../utils/db';
+import { connect } from '../../utils/db';
 
 import Url, { IUrl } from '../../models/Url';
 
@@ -57,7 +57,8 @@ export default async function shorten(
       shortUrl,
     });
     await newUrl.save();
-    console.log(newUrl);
+    // console.log(newUrl);
+    // const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     // send response to client
     return res.status(201).json({
       success: true,
