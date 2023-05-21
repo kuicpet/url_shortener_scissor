@@ -134,7 +134,7 @@ const ShortenForm: React.FC = () => {
       <div
         className={
           shortUrl &&
-          `border border-white rounded-lg p-3 lg:w-3/4 mx-auto relative`
+          `border border-white rounded-lg p-3 w-full lg:w-3/4 mx-auto relative`
         }
       >
         {loading && (
