@@ -13,15 +13,16 @@ const BaseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 const ShortenForm: React.FC = () => {
   const qrCodeRef = useRef<any>(null);
 
-  const [originalUrl, setOriginalUrl] = useState('');
-  const [shortUrl, setShortUrl] = useState('');
-  const [customText, setCustomText] = useState('');
-  const [showQrCode, setShowQrCode] = useState(false);
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [showConfetti, setShowConfetti] = useState(false);
+  const [originalUrl, setOriginalUrl] = useState<string>('');
+  const [shortUrl, setShortUrl] = useState<string>('');
+  const [customText, setCustomText] = useState<string>('');
+  const [showQrCode, setShowQrCode] = useState<Boolean>(false);
+  const [error, setError] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [showConfetti, setShowConfetti] = useState<boolean>(false);
   const [urlDetails, setUrlDetails] = useState<IUrl | null>(null);
 
+  // Submit form
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!originalUrl) {
@@ -68,6 +69,7 @@ const ShortenForm: React.FC = () => {
     }
   };
 
+  // Download QrCode
   const downLoadQrCode = () => {
     const canvas = document.getElementById('qrcode') as HTMLCanvasElement;
     const image = canvas.toDataURL('image/png');
@@ -77,6 +79,7 @@ const ShortenForm: React.FC = () => {
     });
   };
 
+  // Copy Short url
   const copyShortUrl = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
@@ -97,6 +100,14 @@ const ShortenForm: React.FC = () => {
     }
   };
 
+  // Redirection
+  const redirectCopiedLink = (link: string) => {
+    const tempLink = document.createElement('a');
+    tempLink.href = link;
+    tempLink.target = '_blank';
+    tempLink.rel = 'noopener noreferrer';
+    document.body.appendChild(tempLink);
+  };
   return (
     <section className="grid  lg:grid-cols-2 mx-auto p-2 gap-2 ">
       <div className="">
@@ -160,7 +171,7 @@ const ShortenForm: React.FC = () => {
                 text="Copy"
                 className="mt-3 lg:ml-5 font-medium border-2 rounded-md text-sm w-full lg:w-1/4 sm:w-auto px-5 py-1 text-center bg-gradient-to-r hover:from-pink-500 hover:to-yellow-500"
                 onClick={() =>
-                  copyShortUrl(`http://localhost:3000/${shortUrl}`)
+                  copyShortUrl(`localhost:3000/api/redirect/${shortUrl}`)
                 }
               />
             </div>
@@ -181,7 +192,7 @@ const ShortenForm: React.FC = () => {
                   onClick={downLoadQrCode}
                   type="button"
                   text="Download QR Code"
-                  className="mt-3 font-medium border-2 rounded-md text-sm w-full lg:w-3/4 sm:w-auto px-5 py-2.5 text-center bg-gradient-to-r hover:from-pink-500 hover:to-yellow-500"
+                  className="my-3 font-medium border-2 rounded-md text-sm w-full lg:w-3/4 sm:w-auto px-5 py-2.5 text-center bg-gradient-to-r hover:from-pink-500 hover:to-yellow-500"
                 />
               </div>
             )}
