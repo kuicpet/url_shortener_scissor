@@ -25,13 +25,13 @@ export default async function shorten(
     await connect();
 
     // Check if originalurl already exists in db
-    const existingOriginalurl = await Url.findOne({ originalUrl });
+    /*const existingOriginalurl = await Url.findOne({ originalUrl });
     if (existingOriginalurl) {
       return res.status(400).json({
         success: false,
         message: 'This Url has already been shortened',
       });
-    }
+    }*/
     // Generate a unique short url
     let shortUrl: string;
     if (customText) {
