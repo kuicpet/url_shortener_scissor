@@ -4,7 +4,7 @@ import QRCode from 'qrcode.react';
 import { saveAs } from 'file-saver';
 import Confetti from 'react-confetti';
 import { toast, Toaster } from 'react-hot-toast';
-// import { MdOutlineContentCopy } from 'react-icons/md';
+import { MdOutlineContentCopy } from 'react-icons/md';
 import Loader from './Loader';
 import Button from './Button';
 import { IUrl } from '../models/Url';
@@ -101,14 +101,6 @@ const ShortenForm: React.FC = () => {
     }
   };
 
-  // Redirection
-  const redirectCopiedLink = (link: string) => {
-    const tempLink = document.createElement('a');
-    tempLink.href = link;
-    tempLink.target = '_blank';
-    tempLink.rel = 'noopener noreferrer';
-    document.body.appendChild(tempLink);
-  };
   return (
     <section className="grid  lg:grid-cols-2 mx-auto p-2 gap-2 ">
       <div className="">
@@ -119,7 +111,7 @@ const ShortenForm: React.FC = () => {
         <form onSubmit={handleSubmit} className="mt-16 max-w-3xl p-3">
           <div className="flex flex-col  gap-5 items-center">
             <input
-              className="bg-gray  text-white text-sm  focus:ring-black focus:border-black outline-none block w-full lg:w-3/4 p-3 rounded-md"
+              className="truncate... bg-gray  text-white text-sm  focus:ring-black focus:border-black outline-none block w-full lg:w-3/4 p-3 rounded-md"
               type="url"
               placeholder="Enter a URL to shorten"
               value={originalUrl}
@@ -129,7 +121,7 @@ const ShortenForm: React.FC = () => {
             <input
               className="bg-gray text-white text-sm  focus:ring-black focus:border-black outline-none block w-full lg:w-3/4 p-3 rounded-md"
               type="text"
-              placeholder="Enter a Custom Text"
+              placeholder="Enter a Custom Text (Optional)"
               value={customText}
               onChange={(e) => setCustomText(e.target.value)}
             />
@@ -159,22 +151,26 @@ const ShortenForm: React.FC = () => {
           <div className="">
             <div className="my-3 border p-2 rounded-lg text-center">
               <p className="">Shortened Url</p>
-              <a
-                href={`api/redirect/${shortUrl}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {`${shortUrl}`}
-              </a>
+              <div className="flex items-center justify-center p-2">
+                <a
+                  className="px-3 underline hover:text-cyan-500"
+                  href={`api/redirect/${shortUrl}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {`${shortUrl}`}
+                </a>
 
-              <Button
-                type="button"
-                text="Copy"
-                className="mt-3 lg:ml-5 font-medium border-2 rounded-md text-sm w-full lg:w-1/4 sm:w-auto px-5 py-1 text-center bg-gradient-to-r hover:from-pink-500 hover:to-yellow-500"
-                onClick={() =>
-                  copyShortUrl(`${baseUrl}/api/redirect/${shortUrl}`)
-                }
-              />
+                <Button
+                  icon={<MdOutlineContentCopy />}
+                  type="button"
+                  text="Copy"
+                  className="flex items-center justify-center  lg:ml-5 font-medium border-2 rounded-md text-sm  lg:w-1/4 sm:w-auto px-5 py-1 text-center bg-gradient-to-r hover:from-pink-500 hover:to-yellow-500"
+                  onClick={() =>
+                    copyShortUrl(`${baseUrl}/api/redirect/${shortUrl}`)
+                  }
+                />
+              </div>
             </div>
             {showQrCode && (
               <div className="flex flex-col items-center border text-center p-2 rounded-lg ">
