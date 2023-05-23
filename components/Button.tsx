@@ -5,7 +5,7 @@ interface IButton {
   type?: 'button' | 'submit' | 'reset';
   onClick?: () => void;
   loading?: boolean;
-  className: string;
+  className?: string;
   disabled?: boolean;
   icon?: JSX.Element;
 }
