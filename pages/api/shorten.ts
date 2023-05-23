@@ -57,13 +57,17 @@ export default async function shorten(
       shortUrl,
     });
     await newUrl.save();
+
     // console.log(newUrl);
     // const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+
     // send response to client
     return res.status(201).json({
       success: true,
       message: 'Url successfully shortened',
       shortUrl: newUrl.shortUrl,
+      originalUrl: newUrl.originalUrl,
+      clicks: newUrl.clicks,
     });
   } catch (error) {
     console.error(error);

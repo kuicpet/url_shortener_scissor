@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useRouter } from 'next/router';
 import axios from 'axios';
 import QRCode from 'qrcode.react';
 import { saveAs } from 'file-saver';
@@ -7,10 +8,12 @@ import { toast, Toaster } from 'react-hot-toast';
 import { MdOutlineContentCopy } from 'react-icons/md';
 import Loader from './Loader';
 import Button from './Button';
+import UrlDetails from './UrlDetails';
 import { IUrl } from '../models/Url';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 const ShortenForm: React.FC = () => {
+  const rounter = useRouter();
   const qrCodeRef = useRef<any>(null);
 
   const [originalUrl, setOriginalUrl] = useState<string>('');
@@ -46,6 +49,7 @@ const ShortenForm: React.FC = () => {
       setTimeout(() => {
         setShowConfetti(false);
       }, 6000);
+      // console.log(response.data);
       setShortUrl(response.data.shortUrl);
       setUrlDetails(response.data);
       setShowQrCode(true);
@@ -134,6 +138,16 @@ const ShortenForm: React.FC = () => {
             />
           </div>
         </form>
+        {/*<div className="border">
+          {urlDetails && <UrlDetails url={urlDetails} />}
+        </div>*/}
+        <div className="flex items-center justify-center my-2 ">
+          <Button
+            onClick={() => rounter.push('/dashboard')}
+            text="Track your Links"
+            className="lg:ml-5 font-medium border-2 rounded-md text-sm  lg:w-1/2 sm:w-auto px-5 py-1 text-center bg-gradient-to-r from-pink-500 hover:to-yellow-500"
+          />
+        </div>
       </div>
       <div
         className={
