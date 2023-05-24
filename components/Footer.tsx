@@ -5,9 +5,9 @@ const Footer: React.FC = () => {
   return (
     <footer
       data-testid="footer"
-      className="flex items-center justify-center m-5"
+      className="flex items-center justify-center mt-5"
     >
-      <small>
+      <small className="p-3">
         Made with <span className="heart">❤</span> by{' '}
         <a
           href="https://github.com/kuicpet"

@@ -107,7 +107,7 @@ const ShortenForm: React.FC = () => {
   };
 
   return (
-    <section className="grid  lg:grid-cols-2 mx-auto p-2 gap-2 ">
+    <section className="grid  lg:grid-cols-2 mx-auto p-2 gap-2">
       <div className="">
         <Toaster />
         {showConfetti && (
