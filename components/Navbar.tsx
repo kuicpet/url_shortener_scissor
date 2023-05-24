@@ -11,8 +11,9 @@ const Navbar: React.FC = () => {
         className="flex border-2 rounded-md items-center justify-between p-2"
       >
         <div className="">
-          <AiOutlineScissor size={'1.5rem'} />
+          <AiOutlineScissor fontSize={'1.5rem'} />
         </div>
+        Scissor Url Shortener
       </Link>
     </div>
   );

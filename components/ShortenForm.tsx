@@ -10,6 +10,7 @@ import Loader from './Loader';
 import Button from './Button';
 import UrlDetails from './UrlDetails';
 import { IUrl } from '../models/Url';
+import Hero from './Hero';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 const ShortenForm: React.FC = () => {
@@ -209,6 +210,7 @@ const ShortenForm: React.FC = () => {
             )}
           </div>
         )}
+        {!shortUrl && <Hero />}
       </div>
     </section>
   );

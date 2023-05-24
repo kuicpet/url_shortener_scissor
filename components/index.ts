@@ -4,5 +4,6 @@ import Button from './Button';
 import Navbar from './Navbar';
 import Loader from './Loader';
 import UrlDetails from './UrlDetails';
+import Hero from './Hero';
 
-export { Footer, ShortenForm, Button, Navbar, Loader, UrlDetails };
+export { Footer, ShortenForm, Button, Navbar, Loader, UrlDetails, Hero };
