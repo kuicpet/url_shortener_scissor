@@ -14,7 +14,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="sm:p-8 px-4 py-8 w-full bg-black">
+      <main className="sm:p-8 px-4 py-8 w-full">
         <ShortenForm />
       </main>
     </div>
