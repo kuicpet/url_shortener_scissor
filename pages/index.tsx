@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import ShortenForm from '../components/ShortenForm';
+import { Hero } from '../components';
 
 const Home: NextPage = () => {
   return (
@@ -14,7 +15,13 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="sm:p-8 px-4 py-8 w-full">
+      <main className="px-4 w-full bg-welcome bg-no-repeat bg-center">
+        <Hero
+          title=" Optimize Your Online Experience with Our"
+          title2="Advanced"
+          title3="URL Shortening"
+          title4="Solution"
+        />
         <ShortenForm />
       </main>
     </div>

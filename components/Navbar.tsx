@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
 
   return (
-    <nav className=" flex lg:justify-between bg-white justify-between items-center  px-4 py-1">
+    <nav className=" flex lg:justify-between bg-transparent justify-between items-center  px-4 py-1">
       <Link
         href={`/`}
         className="flex items-center justify-between p-2 my-2 mx-5"

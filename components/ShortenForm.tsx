@@ -210,14 +210,6 @@ const ShortenForm: React.FC = () => {
             )}
           </div>
         )}
-        {!shortUrl && (
-          <Hero
-            title="Shorten URLs."
-            title2="Generate QR Codes."
-            title3="Custom Links."
-            title4="Share."
-          />
-        )}
       </div>
     </section>
   );

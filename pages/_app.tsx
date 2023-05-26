@@ -5,7 +5,6 @@ import type { AppProps } from 'next/app';
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div className="xl:w-[1200px] m-auto overflow-x-hidden h-[100vh]">
-      <Navbar />
       <Component {...pageProps} />
       <Footer />
     </div>
