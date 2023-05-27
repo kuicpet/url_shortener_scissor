@@ -13,7 +13,7 @@ interface IHero {
 }
 const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
   return (
-    <section data-testid="hero" className="h-[1024px]">
+    <section data-testid="hero" className="h-full">
       <Navbar />
       <div className="flex items-center justify-center flex-col mt-[6rem]  p-2 rounded-lg text-center">
         <div className="flex items-center flex-col justify-center text-[#141414]  m-6 relative">
@@ -55,7 +55,7 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
           </Link>
         </div>
         <div className="flex items-center justify-center  w-full relative my-5 p-5 bg-blob bg-no-repeat bg-[150px]">
-          <div className="flex flex-col items-center justify-center lg:w-1/2 border-2 h-[224px]  rounded-lg border-[ #005AE2] p-2 z-100 bg-[rgba(254, 254, 254, 0.1]">
+          <div className="flex flex-col items-center justify-center lg:w-1/2 border-2 h-[224px]  rounded-lg border-[ #005AE2] p-2 z-100 bg-[rgba(254, 254, 254, 0.1)]">
             <Image src={LinkImg} alt="" />
             <p className="font-semibold lg:w-3/4 text-[#141414]">
               Seamlessly transform your long URLs into concise and shareable
@@ -66,7 +66,43 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
         <div className="mt-[76px]">
           <Image src={EllipImg} alt="" />
         </div>
-        <div></div>
+        <div className="border-2 border-black flex items-center  h-[220px] bg-[#F9FBFD] w-full my-5 p-3">
+          <div className="w-1/3 flex items-center justify-center">
+            <h2 className=" text-[40px] font-bold text-justify">
+              One Stop.
+              <br />
+              Four <span className="text-[#0065FE]">Possibilities.</span>
+            </h2>
+          </div>
+          <div className="border-2 border-black w-2/3">
+            <ul className="list-none flex justify-between text-justify">
+              <li className="">
+                <h3 className="text-[32px] text-[#141414] font-semibold">3M</h3>
+                <p className="text-[#141414] text-justify font-semibolds">
+                  Active users
+                </p>
+              </li>
+              <li>
+                <h3 className="text-[32px] text-[#141414] font-semibold">
+                  60M
+                </h3>
+                <p className="text-[#141414] text-justify font-semibold">
+                  Links & QR codes created
+                </p>
+              </li>
+              <li>
+                <h3 className="text-[32px] text-[#141414] font-semibold">1B</h3>
+                <p>Clicked & Scanned connections</p>
+              </li>
+              <li>
+                <h3 className="text-[32px] text-[#141414] font-semibold">
+                  300k
+                </h3>
+                <p>App Integrations</p>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
   );
