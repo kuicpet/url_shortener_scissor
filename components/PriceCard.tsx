@@ -32,20 +32,20 @@ const PriceCard: React.FC<IPriceCard> = ({
           <span className="mr-3">{icon}</span>
           {text1}
         </li>
-        <li>
-          <span>{icon}</span>
+        <li className="flex items-center">
+          <span className="mr-3">{icon}</span>
           {text2}
         </li>
-        <li>
-          <span>{icon}</span>
+        <li className="flex items-center">
+          <span className="mr-3">{icon}</span>
           {text3}
         </li>
-        <li>
-          <span>{icon}</span>
+        <li className="flex items-center">
+          <span className="mr-3">{icon}</span>
           {text4}
         </li>
-        <li>
-          <span>{icon}</span>
+        <li className="flex items-center">
+          <span className="mr-3">{icon}</span>
           {text5}
         </li>
       </ul>
