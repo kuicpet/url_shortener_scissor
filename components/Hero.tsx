@@ -10,6 +10,7 @@ import LinksImg from '../assets/link-2.svg';
 import EditImg from '../assets/edit.svg';
 import GridImg from '../assets/grid.svg';
 import ActivityImg from '../assets/activity.svg';
+import PriceCard from './PriceCard';
 
 interface IHero {
   title: string;
@@ -260,7 +261,7 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
             />
           </div>
         </div>
-        <div className="flex items-center justify-center  w-full">
+        <div className="flex flex-col items-center justify-center  w-full">
           <div className="flex flex-col items-center justify-center lg:w-3/4 text-center my-3 p-3">
             <h2 className="text-[40px] font-bold ">
               A <span className="text-[#0065FE]">price perfect</span> for your
@@ -271,7 +272,131 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
               you can be rest assured we have you in mind in our pricing.
             </p>
           </div>
-          <div></div>
+          <div className=" grid grid-cols-3 gap-2 w-full">
+            <PriceCard
+              plan="Basic"
+              price="Free"
+              title="Free plan for all users"
+              text1="Unlimited URL Shortening"
+              text2="Basic Link Analytics"
+              text3="Customizable Short Links"
+              text4="Standard Support"
+              text5="Ad-supported"
+              icon={
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_124_852)">
+                    <path
+                      d="M14.6667 7.38674V8.00007C14.6658 9.43769 14.2003 10.8365 13.3395 11.988C12.4788 13.1394 11.2688 13.9817 9.89022 14.3893C8.5116 14.797 7.03815 14.748 5.68963 14.2498C4.3411 13.7516 3.18975 12.8308 2.40729 11.6248C1.62482 10.4188 1.25317 8.99212 1.34776 7.55762C1.44235 6.12312 1.99812 4.75762 2.93217 3.66479C3.86621 2.57195 5.1285 1.81033 6.53077 1.4935C7.93304 1.17668 9.40016 1.32163 10.7133 1.90674"
+                      stroke="#005AE2"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M14.6667 2.66675L8 9.34008L6 7.34008"
+                      stroke="#005AE2"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_124_852">
+                      <rect width="16" height="16" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              }
+            />
+            <PriceCard
+              plan="Professional"
+              price="$15/month"
+              title="Ideal for business creators"
+              text1="Enhanced Link Analytics"
+              text2="Custom Branded Domains"
+              text3="Advanced Link Customization"
+              text4="Priority Support"
+              text5="Ad-free Experience"
+              icon={
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_124_852)">
+                    <path
+                      d="M14.6667 7.38674V8.00007C14.6658 9.43769 14.2003 10.8365 13.3395 11.988C12.4788 13.1394 11.2688 13.9817 9.89022 14.3893C8.5116 14.797 7.03815 14.748 5.68963 14.2498C4.3411 13.7516 3.18975 12.8308 2.40729 11.6248C1.62482 10.4188 1.25317 8.99212 1.34776 7.55762C1.44235 6.12312 1.99812 4.75762 2.93217 3.66479C3.86621 2.57195 5.1285 1.81033 6.53077 1.4935C7.93304 1.17668 9.40016 1.32163 10.7133 1.90674"
+                      stroke="#005AE2"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M14.6667 2.66675L8 9.34008L6 7.34008"
+                      stroke="#005AE2"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_124_852">
+                      <rect width="16" height="16" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              }
+            />
+            <PriceCard
+              plan="Teams"
+              price="$25/month"
+              title="Share with up to 10 users"
+              text1="Team Collaboration"
+              text2="User Roles and Permissions"
+              text3="Enhanced Security"
+              text4="API Access"
+              text5="Dedicated Account Manager"
+              icon={
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_124_852)">
+                    <path
+                      d="M14.6667 7.38674V8.00007C14.6658 9.43769 14.2003 10.8365 13.3395 11.988C12.4788 13.1394 11.2688 13.9817 9.89022 14.3893C8.5116 14.797 7.03815 14.748 5.68963 14.2498C4.3411 13.7516 3.18975 12.8308 2.40729 11.6248C1.62482 10.4188 1.25317 8.99212 1.34776 7.55762C1.44235 6.12312 1.99812 4.75762 2.93217 3.66479C3.86621 2.57195 5.1285 1.81033 6.53077 1.4935C7.93304 1.17668 9.40016 1.32163 10.7133 1.90674"
+                      stroke="#005AE2"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M14.6667 2.66675L8 9.34008L6 7.34008"
+                      stroke="#005AE2"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_124_852">
+                      <rect width="16" height="16" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              }
+            />
+          </div>
         </div>
       </div>
     </section>

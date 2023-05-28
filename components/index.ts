@@ -6,5 +6,16 @@ import Loader from './Loader';
 import UrlDetails from './UrlDetails';
 import Hero from './Hero';
 import Card from './Card';
+import PriceCard from './PriceCard';
 
-export { Footer, ShortenForm, Button, Navbar, Loader, UrlDetails, Hero, Card };
+export {
+  Footer,
+  ShortenForm,
+  Button,
+  Navbar,
+  Loader,
+  UrlDetails,
+  Hero,
+  Card,
+  PriceCard,
+};
