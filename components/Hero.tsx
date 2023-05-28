@@ -21,7 +21,7 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
   return (
     <section data-testid="hero" className="h-full">
       <Navbar />
-      <div className="flex items-center justify-center flex-col mt-[6rem]  p-2 rounded-lg text-center">
+      <div className="flex items-center justify-center flex-col lg:mt-[6rem]  p-2 rounded-lg text-center">
         <div className="flex items-center flex-col justify-center text-[#141414]  m-6 relative">
           <h1 className="lg:text-5xl text-2xl lg:text-center text-left   lg:my-3 font-bold">
             {title}
@@ -81,20 +81,20 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
             </h2>
           </div>
           <div className="lg:w-2/3">
-            <ul className="list-none flex justify-between text-left font-semibold">
-              <li className="w-1/4 mx-2">
+            <ul className="list-none lg:flex grid grid-cols-2 justify-between text-left font-semibold">
+              <li className="lg:w-1/4 mx-2">
                 <h3 className="text-[32px] text-[#141414]">3M</h3>
                 <p>Active users</p>
               </li>
-              <li className="w-1/4 mx-2">
+              <li className="lg:w-1/4 mx-2">
                 <h3 className="text-[32px] text-[#141414]">60M</h3>
                 <p>Links & QR codes created</p>
               </li>
-              <li className="w-1/4 mx-2">
+              <li className="lg:w-1/4 mx-2">
                 <h3 className="text-[32px] text-[#141414]">1B</h3>
                 <p>Clicked & Scanned connections</p>
               </li>
-              <li className="w-1/4 mx-2">
+              <li className="lg:w-1/4 mx-2">
                 <h3 className="text-[32px] text-[#141414]">300k</h3>
                 <p>App Integrations</p>
               </li>
@@ -259,6 +259,19 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
               description="Receive data on the usage of either your shortened URL, custom URLs or generated QR codes. Embedded to monitor progress."
             />
           </div>
+        </div>
+        <div className="flex items-center justify-center  w-full">
+          <div className="flex flex-col items-center justify-center lg:w-3/4 text-center my-3 p-3">
+            <h2 className="text-[40px] font-bold ">
+              A <span className="text-[#0065FE]">price perfect</span> for your
+              needs.
+            </h2>
+            <p className="lg:w-3/4">
+              From catering for your personal, business, event, socials needs,
+              you can be rest assured we have you in mind in our pricing.
+            </p>
+          </div>
+          <div></div>
         </div>
       </div>
     </section>
