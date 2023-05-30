@@ -108,15 +108,21 @@ const ShortenForm: React.FC = () => {
   };
 
   return (
-    <section className="flex items-center justify-center mx-auto p-2 gap-2">
-      <div className="lg:order-first md:order-1 order-last">
+    <section
+      className={
+        !shortUrl
+          ? `flex items-center justify-center mx-auto p-2 gap-2`
+          : `grid lg:grid-cols-2 gap-2 `
+      }
+    >
+      <div className="flex items-center justify-center lg:order-first md:order-1 order-last">
         <Toaster />
         {showConfetti && (
           <Confetti width={window.innerWidth} height={window.innerHeight} />
         )}
         <form
           onSubmit={handleSubmit}
-          className="mt-16 p-3 border-2 bg-white rounded-xl  lg:w-[29rem]"
+          className="mt-16 p-3 bg-white rounded-xl  lg:w-[29rem]"
         >
           <div className="flex flex-col items-center">
             <input
@@ -174,7 +180,7 @@ const ShortenForm: React.FC = () => {
       <div
         className={
           shortUrl &&
-          `border border-white rounded-lg p-3 w-full lg:w-3/4 mx-auto relative`
+          `bg-white rounded-2xl mt-16 w-full lg:w-[29rem] mx-auto relative`
         }
       >
         {loading && (
@@ -184,12 +190,12 @@ const ShortenForm: React.FC = () => {
         )}
 
         {shortUrl && (
-          <div className="">
-            <div className="my-3 border p-2 rounded-lg text-center">
-              <p className="">Shortened Url</p>
+          <div className="w-full">
+            <div className="my-3 p-2  text-center w-full bg-white">
+              <p className="font-bold text-[#005AE2]">Shortened Url</p>
               <div className="flex items-center justify-center p-2">
                 <a
-                  className="px-3 underline hover:text-cyan-500"
+                  className="px-3 underline hover:text-cyan-500 text-[#005AE2]"
                   href={`api/redirect/${shortUrl}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -201,7 +207,7 @@ const ShortenForm: React.FC = () => {
                   icon={<MdOutlineContentCopy />}
                   type="button"
                   text="Copy"
-                  className="flex items-center justify-center  lg:ml-5 font-medium border-2 rounded-md text-sm  lg:w-1/4 sm:w-auto px-5 py-1 text-center bg-gradient-to-r hover:from-pink-500 hover:to-yellow-500"
+                  className="flex items-center justify-center  lg:ml-5 font-medium border-[#005AE2] border-2 outline-none text-sm  lg:w-1/4 sm:w-auto px-5 py-1 text-center bg-white text-[#005AE2] rounded-full"
                   onClick={() =>
                     copyShortUrl(`${baseUrl}/api/redirect/${shortUrl}`)
                   }
@@ -209,9 +215,9 @@ const ShortenForm: React.FC = () => {
               </div>
             </div>
             {showQrCode && (
-              <div className="flex flex-col items-center border text-center p-2 rounded-lg ">
-                <p>QR Code</p>
-                <div className="h-[144px] border-[8px] w-[144px] rounded-lg flex items-center justify-center p-2 m-2">
+              <div className="flex flex-col items-center text-center p-1">
+                <p>QR Code generated</p>
+                <div className="h-[144px] border-[8px] w-[144px] rounded-lg flex items-center justify-center p-2 m-2 s">
                   <div className="p-2 w-[136px] h-[136px] border-[16px]  rounded-lg m-5 flex items-center justify-center bg-white">
                     <QRCode
                       value={shortUrl}
@@ -225,7 +231,7 @@ const ShortenForm: React.FC = () => {
                   onClick={downLoadQrCode}
                   type="button"
                   text="Download QR Code"
-                  className="my-3 font-medium border-2 rounded-md text-sm w-full lg:w-3/4 sm:w-auto px-5 py-2.5 text-center bg-gradient-to-r hover:from-pink-500 hover:to-yellow-500"
+                  className="font-medium border-2 border-[#005AE2] text-[#005AE2] rounded-full text-sm w-full lg:w-3/4 sm:w-auto px-5 py-2.5 text-center hover:bg-[#005AE2] hover:text-white transition ease-in-out delay-75"
                 />
               </div>
             )}

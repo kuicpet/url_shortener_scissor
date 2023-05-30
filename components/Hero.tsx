@@ -399,7 +399,7 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
               }
             />
           </div>
-          <div className="border-2 border-black w-full h-[523px] short p-0 m-0">
+          <div className="border-2 border-black w-full lg:h-[523px] short p-5 m-2">
             <ShortenForm />
           </div>
         </div>
