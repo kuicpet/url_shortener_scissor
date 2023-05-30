@@ -10,7 +10,8 @@ import Loader from './Loader';
 import Button from './Button';
 import UrlDetails from './UrlDetails';
 import { IUrl } from '../models/Url';
-import Hero from './Hero';
+import { ImMagicWand } from 'react-icons/im';
+import MagicWandImg from '../assets/magic wand (1).png';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 const ShortenForm: React.FC = () => {
@@ -107,48 +108,68 @@ const ShortenForm: React.FC = () => {
   };
 
   return (
-    <section className="grid  lg:grid-cols-2 mx-auto p-2 gap-2">
+    <section className="flex items-center justify-center mx-auto p-2 gap-2">
       <div className="lg:order-first md:order-1 order-last">
         <Toaster />
         {showConfetti && (
           <Confetti width={window.innerWidth} height={window.innerHeight} />
         )}
-        <form onSubmit={handleSubmit} className="mt-16 max-w-3xl p-3">
-          <div className="flex flex-col  gap-5 items-center">
+        <form
+          onSubmit={handleSubmit}
+          className="mt-16 p-3 border-2 bg-white rounded-xl  w-[476px]"
+        >
+          <div className="flex flex-col items-center">
             <input
-              className="truncate... bg-gray  text-white text-sm  focus:ring-black focus:border-black outline-none block w-full lg:w-3/4 p-3 rounded-md"
+              className="border border-[#3284FF]  text-[#3284FF] my-5 text-sm  focus:ring-black focus:border-black outline-none block w-full p-3 rounded-lg placeholder:text-[#3284FF]"
               type="url"
-              placeholder="Enter a URL to shorten"
+              placeholder="Paste URL here..."
               value={originalUrl}
               onChange={(e) => setOriginalUrl(e.target.value)}
             />
             <div className="text-red-500 text-sm">{error}</div>
-            <input
-              className="bg-gray text-white text-sm  focus:ring-black focus:border-black outline-none block w-full lg:w-3/4 p-3 rounded-md"
-              type="text"
-              placeholder="Enter a Custom Text (Optional)"
-              value={customText}
-              onChange={(e) => setCustomText(e.target.value)}
-            />
+            <div className="flex w-full">
+              <input
+                className="border border-[#3284FF]  text-[#3284FF]  text-sm  focus:ring-black focus:border-black outline-none block w-full lg:w-3/4 p-3 rounded-lg placeholder:text-[#3284FF]"
+                type="text"
+                placeholder="Type Alias here"
+                value={customText}
+                onChange={(e) => setCustomText(e.target.value)}
+              />
+              <input
+                className="border border-[#3284FF]  text-[#3284FF]  text-sm  focus:ring-black focus:border-black outline-none block w-full lg:w-3/4 p-3 rounded-lg placeholder:text-[#3284FF]"
+                type="text"
+                placeholder="Type Alias here"
+                value={customText}
+                onChange={(e) => setCustomText(e.target.value)}
+              />
+            </div>
             <Button
+              icon={<ImMagicWand />}
               loading={loading}
               disabled={!originalUrl}
-              text="Shorten"
+              text="Trim URL"
               type="submit"
-              className='"disabled:cursor-not-allowed disabled:bg-gray-500 enabled:bg-gradient-to-r to-green-400 from-blue-500 mt-3  font-bold outline-none border-none rounded-md text-sm w-full lg:w-3/4 sm:w-auto px-5 py-2.5 text-center text-white"'
+              className="flex items-center justify-center disabled:cursor-not-allowed disabled:bg-gray-500 bg-[#005AE2] my-10  font-bold outline-none border-none text-sm w-full  px-5 py-2.5 text-center text-white rounded-full"
             />
           </div>
+          <p className="text-[#4991FF] text-sm my-4 w-full text-justify">
+            By clicking TrimURL, I agree to the{' '}
+            <span className="font-semibold">
+              Terms of Service, Privacy Policy{' '}
+            </span>
+            and Use of Cookies.
+          </p>
         </form>
         {/*<div className="border">
           {urlDetails && <UrlDetails url={urlDetails} />}
-        </div>*/}
+        </div>
         <div className="flex items-center justify-center my-2 ">
           <Button
             onClick={() => rounter.push('/dashboard')}
             text="Track your Links"
             className="lg:ml-5 font-medium border-2 rounded-md text-sm  lg:w-1/2 sm:w-auto px-5 py-1 text-center bg-gradient-to-r from-pink-500 hover:to-yellow-500"
           />
-        </div>
+        </div>*/}
       </div>
       <div
         className={

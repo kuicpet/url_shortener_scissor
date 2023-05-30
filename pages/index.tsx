@@ -22,7 +22,6 @@ const Home: NextPage = () => {
           title3="URL Shortening"
           title4="Solution"
         />
-        <ShortenForm />
       </main>
     </div>
   );
