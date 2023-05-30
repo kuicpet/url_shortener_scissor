@@ -10,7 +10,9 @@ import LinksImg from '../assets/link-2.svg';
 import EditImg from '../assets/edit.svg';
 import GridImg from '../assets/grid.svg';
 import ActivityImg from '../assets/activity.svg';
+import check from '../assets/check-circle.png';
 import PriceCard from './PriceCard';
+import ShortenForm from './ShortenForm';
 
 interface IHero {
   title: string;
@@ -262,7 +264,7 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
           </div>
         </div>
         <div className="flex flex-col items-center justify-center  w-full">
-          <div className="flex flex-col items-center justify-center lg:w-3/4 text-center my-3 p-3">
+          <div className="flex flex-col items-center justify-center lg:w-3/4 text-center my-5 p-3">
             <h2 className="text-[40px] font-bold ">
               A <span className="text-[#0065FE]">price perfect</span> for your
               needs.
@@ -272,7 +274,7 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
               you can be rest assured we have you in mind in our pricing.
             </p>
           </div>
-          <div className=" grid grid-cols-3 gap-2 w-full">
+          <div className="w-full cardgrid">
             <PriceCard
               plan="Basic"
               price="Free"
@@ -396,6 +398,9 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
                 </svg>
               }
             />
+          </div>
+          <div className="border-2 border-black w-full h-[523px] short p-0 m-0">
+            <ShortenForm />
           </div>
         </div>
       </div>

@@ -9,7 +9,8 @@ interface IPriceCard {
   text3: string;
   text4: string;
   text5: string;
-  icon: JSX.Element;
+  //icon: JSX.Element;
+  icon: any;
 }
 const PriceCard: React.FC<IPriceCard> = ({
   plan,
@@ -23,32 +24,42 @@ const PriceCard: React.FC<IPriceCard> = ({
   icon,
 }) => {
   return (
-    <div className="border-black border-2 rounded-lg text-justify py-5 px-[3rem]">
-      <h5>{plan}</h5>
-      <h3 className="mt-6 mb-3">{price}</h3>
-      <h4>{title}</h4>
-      <ul>
-        <li className="flex items-center">
-          <span className="mr-3">{icon}</span>
-          {text1}
-        </li>
-        <li className="flex items-center">
-          <span className="mr-3">{icon}</span>
-          {text2}
-        </li>
-        <li className="flex items-center">
-          <span className="mr-3">{icon}</span>
-          {text3}
-        </li>
-        <li className="flex items-center">
-          <span className="mr-3">{icon}</span>
-          {text4}
-        </li>
-        <li className="flex items-center">
-          <span className="mr-3">{icon}</span>
-          {text5}
-        </li>
-      </ul>
+    <div>
+      <div className="border-[#005AE2] cursor-pointer border flex flex-col justify-center rounded-lg text-justify py-5 px-[3rem] lg:w-[22rem] w-full bg-[#FFFFFF] hover:bg-[#1E3448] hover:text-[#FFFFFF] hover:border-none transition ease-in-out delay-75 hover:scale-105">
+        <h5 className="font-[500px] text-2xl">{plan}</h5>
+        <h3 className="mt-6 mb-3 font-bold text-4xl">{price}</h3>
+        <h4 className="font-[500px] text-xl text-left">{title}</h4>
+        <ul>
+          <li className="flex items-center my-4 text-[14px]">
+            <span className="mr-3">{icon}</span>
+            {text1}
+          </li>
+          <li className="flex items-center my-4">
+            <span className="mr-3">{icon}</span>
+            {text2}
+          </li>
+          <li className="flex items-center my-4">
+            <span className="mr-3">{icon}</span>
+            {text3}
+          </li>
+          <li className="flex items-center my-4">
+            <span className="mr-3">{icon}</span>
+            {text4}
+          </li>
+          <li className="flex items-center my-4">
+            <span className="mr-3">{icon}</span>
+            {text5}
+          </li>
+        </ul>
+      </div>
+      <div>
+        <button
+          type="button"
+          className="flex items-center justify-center h-12 my-10 bg-[#005AE2] text-white font-[600] rounded-full px-10 mx-auto"
+        >
+          Select Pricing
+        </button>
+      </div>
     </div>
   );
 };

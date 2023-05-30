@@ -18,3 +18,17 @@ a {
 * {
   box-sizing: border-box;
 }
+
+svg:hover {
+  stroke: white;
+}
+
+.cardgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.short {
+  background: linear-gradient(180deg, #1e3448 99.99%, rgba(30, 52, 72, 0) 100%);
+}
