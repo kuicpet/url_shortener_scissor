@@ -21,6 +21,7 @@ const ShortenForm: React.FC = () => {
   const [originalUrl, setOriginalUrl] = useState<string>('');
   const [shortUrl, setShortUrl] = useState<string>('');
   const [customText, setCustomText] = useState<string>('');
+  const [customDomain, setCustomDomain] = useState<string>('');
   const [showQrCode, setShowQrCode] = useState<Boolean>(false);
   const [error, setError] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -40,6 +41,7 @@ const ShortenForm: React.FC = () => {
       const response = await axios.post('/api/shorten', {
         originalUrl,
         customText,
+        customDomain,
       });
       toast.success(response.data.message, {
         style: {
@@ -64,8 +66,8 @@ const ShortenForm: React.FC = () => {
 
       setLoading(false);
     } catch (error: any) {
-      console.error(error);
-      toast.error(error.response.data.message, {
+      // console.error(error?.response?.data);
+      toast.error(error?.response?.data?.message, {
         style: {
           color: 'white',
           backgroundColor: 'red',
@@ -136,10 +138,10 @@ const ShortenForm: React.FC = () => {
             <div className="flex w-full md:flex-row lg:flex-row flex-col   justify-around gap-2">
               <input
                 className="border border-[#3284FF]  text-[#3284FF]  text-sm  focus:ring-black focus:border-black outline-none block w-full lg:w-1/2 p-3 rounded-lg placeholder:text-[#3284FF]"
-                type="text"
+                type="url"
                 placeholder="Customize domain"
-                value={customText}
-                onChange={(e) => setCustomText(e.target.value)}
+                value={customDomain}
+                onChange={(e) => setCustomDomain(e.target.value)}
               />
               <input
                 className="border border-[#3284FF]  text-[#3284FF]  text-sm  focus:ring-black focus:border-black outline-none block w-full lg:w-1/2 p-3 rounded-lg placeholder:text-[#3284FF]"
@@ -200,14 +202,14 @@ const ShortenForm: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {`${shortUrl}`}
+                  {`${customDomain}/${shortUrl}`}
                 </a>
 
                 <Button
                   icon={<MdOutlineContentCopy />}
                   type="button"
                   text="Copy"
-                  className="flex items-center justify-center  lg:ml-5 font-medium border-[#005AE2] border-2 outline-none text-sm  lg:w-1/4 sm:w-auto px-5 py-1 text-center bg-white text-[#005AE2] rounded-full"
+                  className="flex items-center justify-center  lg:ml-5 font-medium border-[#005AE2] border-2 outline-none text-sm  lg:w-1/4 sm:w-auto px-5 py-1 text-center bg-white text-[#005AE2] rounded-full hover:text-white hover:bg-[#005AE2]"
                   onClick={() =>
                     copyShortUrl(`${baseUrl}/api/redirect/${shortUrl}`)
                   }

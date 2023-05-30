@@ -8,6 +8,7 @@ export interface IClick {
 export interface IUrl extends Document {
   originalUrl: string;
   customText?: string;
+  customDomain?: string;
   shortUrl: string;
   createdAt: Date;
   clicks: IClick[];
@@ -23,6 +24,10 @@ const urlSchema = new Schema<IUrl>(
       type: String,
       unique: true,
       sparse: true,
+    },
+    customDomain: {
+      type: String,
+      unique: true,
     },
     shortUrl: {
       type: String,

@@ -25,7 +25,7 @@ const Button: React.FC<IButton> = ({
       className={className}
       disabled={disabled}
     >
-      <span>{!loading ? <>{text}</> : 'Shortening...'}</span>
+      <span>{!loading ? <>{text}</> : 'Trimming URL...'}</span>
       <span className="mx-3">{icon}</span>
     </button>
   );
