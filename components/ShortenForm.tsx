@@ -116,7 +116,7 @@ const ShortenForm: React.FC = () => {
         )}
         <form
           onSubmit={handleSubmit}
-          className="mt-16 p-3 border-2 bg-white rounded-xl  w-[476px]"
+          className="mt-16 p-3 border-2 bg-white rounded-xl  lg:w-[29rem]"
         >
           <div className="flex flex-col items-center">
             <input
@@ -127,16 +127,16 @@ const ShortenForm: React.FC = () => {
               onChange={(e) => setOriginalUrl(e.target.value)}
             />
             <div className="text-red-500 text-sm">{error}</div>
-            <div className="flex w-full">
+            <div className="flex w-full md:flex-row lg:flex-row flex-col   justify-around gap-2">
               <input
-                className="border border-[#3284FF]  text-[#3284FF]  text-sm  focus:ring-black focus:border-black outline-none block w-full lg:w-3/4 p-3 rounded-lg placeholder:text-[#3284FF]"
+                className="border border-[#3284FF]  text-[#3284FF]  text-sm  focus:ring-black focus:border-black outline-none block w-full lg:w-1/2 p-3 rounded-lg placeholder:text-[#3284FF]"
                 type="text"
-                placeholder="Type Alias here"
+                placeholder="Customize domain"
                 value={customText}
                 onChange={(e) => setCustomText(e.target.value)}
               />
               <input
-                className="border border-[#3284FF]  text-[#3284FF]  text-sm  focus:ring-black focus:border-black outline-none block w-full lg:w-3/4 p-3 rounded-lg placeholder:text-[#3284FF]"
+                className="border border-[#3284FF]  text-[#3284FF]  text-sm  focus:ring-black focus:border-black outline-none block w-full lg:w-1/2 p-3 rounded-lg placeholder:text-[#3284FF]"
                 type="text"
                 placeholder="Type Alias here"
                 value={customText}
