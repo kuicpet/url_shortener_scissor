@@ -6,13 +6,11 @@ import Navbar from './Navbar';
 import Card from './Card';
 import LinkImg from '../assets/Frame 1000001716.svg';
 import EllipImg from '../assets/Group 3.svg';
-import LinksImg from '../assets/link-2.svg';
-import EditImg from '../assets/edit.svg';
-import GridImg from '../assets/grid.svg';
-import ActivityImg from '../assets/activity.svg';
-import check from '../assets/check-circle.png';
+import Line from '../assets/Line 70.png';
 import PriceCard from './PriceCard';
 import ShortenForm from './ShortenForm';
+import Faqs from './Faqs';
+import Button from './Button';
 
 interface IHero {
   title: string;
@@ -105,11 +103,14 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
           </div>
         </div>
         <div className="flex flex-col lg:flex-row w-full my-5 p-3">
-          <div className="lg:w-[38%] flex p-3 flex-col text-left">
-            <h2 className="text-[40px] font-bold ">
-              Why choose <span className="text-[#0065FE]">Scissor.</span>
-            </h2>
-            <p>
+          <div className="lg:w-[40%] flex p-3 flex-col text-left">
+            <div className="flex items-center justify-center">
+              <Image src={Line} alt="" className="mx-2" />
+              <h2 className="text-[40px] font-bold ">
+                Why choose <span className="text-[#0065FE]">Scissor.</span>
+              </h2>
+            </div>
+            <p className="mx-2">
               Scissors is the hub of everything that has to do with your link
               management. We shorten your URLs, allow you creating custom ones
               for your personal, business, event usage. Our swift QR code
@@ -265,10 +266,13 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
         </div>
         <div className="flex flex-col items-center justify-center  w-full">
           <div className="flex flex-col items-center justify-center lg:w-3/4 text-center my-5 p-3">
-            <h2 className="text-[40px] font-bold ">
-              A <span className="text-[#0065FE]">price perfect</span> for your
-              needs.
-            </h2>
+            <div className="flex items-center justify-center text-[40px] font-bold ">
+              <Image src={Line} alt="" className="mx-2" />
+              <h2>
+                A <span className="text-[#0065FE]">price perfect</span> for your
+                needs.
+              </h2>
+            </div>
             <p className="lg:w-3/4">
               From catering for your personal, business, event, socials needs,
               you can be rest assured we have you in mind in our pricing.
@@ -399,8 +403,22 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
               }
             />
           </div>
-          <div className="border-2 border-black w-full lg:h-[523px] short p-2 m-2">
+          <div className="w-full lg:h-[523px] short p-2 m-2">
             <ShortenForm />
+          </div>
+          <div className="border-2 border-black w-full p-2 m-2">
+            <Faqs />
+          </div>
+          <div className="flex flex-col items-center justify-center w-full p-2 m-2 short h-[299px]">
+            <h2 className="text-center text-white font-bold text-[40px]">
+              Revolutionizing Link Optimization
+            </h2>
+            <button
+              type="button"
+              className="flex items-center justify-center h-12 my-10 bg-[#005AE2] text-white font-[600] rounded-full px-10 mx-auto w-[200px]"
+            >
+              Get Started
+            </button>
           </div>
         </div>
       </div>

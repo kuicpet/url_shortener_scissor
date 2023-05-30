@@ -7,6 +7,7 @@ import UrlDetails from './UrlDetails';
 import Hero from './Hero';
 import Card from './Card';
 import PriceCard from './PriceCard';
+import Faqs from './Faqs';
 
 export {
   Footer,
@@ -18,4 +19,5 @@ export {
   Hero,
   Card,
   PriceCard,
+  Faqs,
 };
