@@ -406,7 +406,7 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
           <div className="w-full lg:h-[523px] short p-2 m-2">
             <ShortenForm />
           </div>
-          <div className="border-2 border-black w-full p-2 m-2">
+          <div className="w-full p-2 m-2">
             <Faqs />
           </div>
           <div className="flex flex-col items-center justify-center w-full p-2 m-2 short h-[299px]">

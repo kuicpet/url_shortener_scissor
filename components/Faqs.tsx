@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Line from '../assets/Line 70.png';
+import PlusImg from '../assets/plus.png';
+import MinusImg from '../assets/minus.png';
 
 const faqs = [
   {
@@ -40,12 +42,59 @@ const faqs = [
     res: '',
   },
 ];
-const Faqs = () => {
+const Faqs: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const faqShow = {
+    height: '150px',
+    transition: '0.5s',
+  };
+
+  const faqHide = {
+    height: '50px',
+    transition: '0.5s',
+  };
+
+  const toggle = (index: any): void => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
+
   return (
-    <div>
-      <div className="flex items-center justify-center">
-        <Image src={Line} alt="" className="mx-2" />
-        <h2 className="text-[#141414] text-[40px] font-bold">FAQs</h2>
+    <div className="">
+      <div className="flex items-center flex-col justify-center">
+        <span className="flex items-center justify-center">
+          <Image src={Line} alt="" className="mx-2" />
+          <h2 className="text-[#141414] text-[40px] font-bold">FAQs</h2>
+        </span>
+
+        <div className="cursor-pointer flex items-center justify-center flex-col">
+          {faqs.map((item, index) => (
+            <div key={index} className="w-full lg:w-[70%] p-3">
+              <div
+                className={`${activeIndex === index ? 'active' : ''}`}
+                onClick={() => toggle(index)}
+              >
+                <div className="flex items-center justify-between">
+                  <h3 className="text-[#141414] text-xl font-[500] text-justify my-1 w-3/4">
+                    {item.ques}
+                  </h3>
+                  <div className="hidden lg:flex">
+                    {activeIndex !== index ? (
+                      <Image src={PlusImg} alt="" />
+                    ) : (
+                      <Image src={MinusImg} alt="" />
+                    )}
+                  </div>
+                </div>
+              </div>
+              {activeIndex === index && (
+                <div className="flex items-center justify-center text-justify shadow-md p-2 rounded-sm">
+                  <p className="">{item.res}</p>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
