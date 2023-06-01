@@ -75,7 +75,7 @@ const Faqs: React.FC = () => {
                 onClick={() => toggle(index)}
               >
                 <div className="flex items-center justify-between p-2">
-                  <h3 className="text-[#141414] text-lg font-[500] text-justify my-1 w-3/4">
+                  <h3 className="text-[#141414] text-lg font-[500] lg:text-justify text-left my-1 lg:w-3/4 w-full">
                     {item.ques}
                   </h3>
                   <div className="hidden lg:flex transition ease-in-out delay-75">

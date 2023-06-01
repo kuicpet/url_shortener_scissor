@@ -409,13 +409,13 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
           <div className="w-full p-2 m-2">
             <Faqs />
           </div>
-          <div className="flex flex-col items-center justify-center w-full p-2 m-2 short h-[299px]">
+          <div className="flex flex-col items-center justify-center w-full lg:p-2 m-2 short h-[299px]">
             <h2 className="text-center text-white font-bold text-[40px]">
               Revolutionizing Link Optimization
             </h2>
             <button
               type="button"
-              className="flex items-center justify-center h-12 my-10 bg-[#005AE2] text-white font-[600] rounded-full px-10 mx-auto w-[200px]"
+              className="flex items-center justify-center lg:h-[3rem] my-10 bg-[#005AE2] text-white font-[600] rounded-full px-10 mx-auto w-[200px] py-3"
             >
               Get Started
             </button>
