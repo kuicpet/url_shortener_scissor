@@ -3,21 +3,9 @@ import React from 'react';
 const Footer: React.FC = () => {
   const date = new Date().getFullYear();
   return (
-    <footer
-      data-testid="footer"
-      className="flex items-center justify-center mt-5"
-    >
+    <footer data-testid="footer" className="flex items-center justify-end mt-5">
       <small className="p-3">
-        Made with <span className="heart">❤</span> by{' '}
-        <a
-          href="https://github.com/kuicpet"
-          target="_blank"
-          rel="noreferrer"
-          className="border-2 border-white px-2 py-1 rounded-md text-white"
-        >
-          Kingsley Umujeyan
-        </a>{' '}
-        &copy; {date}
+        Terms of Service | Security | &copy; Scissor {date}
       </small>
     </footer>
   );

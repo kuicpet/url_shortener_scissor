@@ -74,11 +74,11 @@ const Faqs: React.FC = () => {
                 className={`${activeIndex === index ? 'active' : ''}`}
                 onClick={() => toggle(index)}
               >
-                <div className="flex items-center justify-between">
-                  <h3 className="text-[#141414] text-xl font-[500] text-justify my-1 w-3/4">
+                <div className="flex items-center justify-between p-2">
+                  <h3 className="text-[#141414] text-lg font-[500] text-justify my-1 w-3/4">
                     {item.ques}
                   </h3>
-                  <div className="hidden lg:flex">
+                  <div className="hidden lg:flex transition ease-in-out delay-75">
                     {activeIndex !== index ? (
                       <Image src={PlusImg} alt="" />
                     ) : (
@@ -88,7 +88,7 @@ const Faqs: React.FC = () => {
                 </div>
               </div>
               {activeIndex === index && (
-                <div className="flex items-center justify-center text-justify shadow-md p-2 rounded-sm">
+                <div className="flex items-center justify-center text-justify shadow-md p-2 rounded-sm ">
                   <p className="">{item.res}</p>
                 </div>
               )}
