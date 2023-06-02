@@ -26,7 +26,7 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
   return (
     <section data-testid="hero" className="h-full">
       <Navbar />
-      <div className="flex items-center justify-center flex-col lg:mt-[6rem]  p-2 rounded-lg text-center">
+      <div className="flex items-center justify-center flex-col lg:mt-[6rem]   rounded-lg text-center">
         <div className="flex items-center flex-col justify-center text-[#141414]  m-6 relative">
           <h1 className="lg:text-5xl text-2xl lg:text-center text-left   lg:my-3 font-bold">
             {title}
@@ -268,7 +268,7 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
             />
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center  w-full">
+        <div className="flex flex-col items-center justify-center  w-full ">
           <div className="flex flex-col items-center justify-center lg:w-3/4 text-center my-5 p-3">
             <div className="flex items-center justify-center text-[40px] font-bold ">
               <Image src={Line} alt="" className="mx-2" />

@@ -15,7 +15,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="px-4 w-full bg-welcome bg-no-repeat bg-auto">
+      <main className="p-0 w-full bg-welcome bg-no-repeat bg-auto">
         <Hero
           title=" Optimize Your Online Experience with Our"
           title2="Advanced"
