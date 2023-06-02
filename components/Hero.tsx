@@ -451,7 +451,7 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
                   {['Scissor 101', 'Integrations & API', 'Pricing'].map(
                     (item, i) => (
                       <li
-                        className="font-[500] text-[#112232] hover:underline hover:cursor-pointer hover:text-[#0065FE] transition ease-in-out delay-20"
+                        className="font-[400] text-[#112232] hover:underline hover:cursor-pointer hover:text-[#0065FE] transition ease-in-out delay-20"
                         key={i}
                       >
                         {item}
@@ -469,7 +469,7 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
                     'Customer Service For Developers',
                   ].map((item, i) => (
                     <li
-                      className="font-[500] text-[#112232] hover:underline hover:cursor-pointer hover:text-[#0065FE] transition ease-in-out delay-20"
+                      className="font-[400] text-[#112232] hover:underline hover:cursor-pointer hover:text-[#0065FE] transition ease-in-out delay-20"
                       key={i}
                     >
                       {item}
@@ -483,7 +483,7 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
                   {['Link Management', 'QR Codes', ' Link-in-bi'].map(
                     (item, i) => (
                       <li
-                        className="font-[500] text-[#112232] hover:underline hover:cursor-pointer hover:text-[#0065FE] transition ease-in-out delay-20"
+                        className="font-[400] text-[#112232] hover:underline hover:cursor-pointer hover:text-[#0065FE] transition ease-in-out delay-20"
                         key={i}
                       >
                         {item}
@@ -506,7 +506,7 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
                     'Mobile App',
                   ].map((item, i) => (
                     <li
-                      className="font-[500] text-[#112232] hover:underline hover:cursor-pointer hover:text-[#0065FE] transition ease-in-out delay-20"
+                      className="font-[400] text-[#112232] hover:underline hover:cursor-pointer hover:text-[#0065FE] transition ease-in-out delay-20"
                       key={i}
                     >
                       {item}
@@ -525,7 +525,7 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
                     'QR Code generation',
                   ].map((item, i) => (
                     <li
-                      className="font-[500] text-[#112232] hover:underline hover:cursor-pointer hover:text-[#0065FE] transition ease-in-out delay-20"
+                      className="font-[400] text-[#112232] hover:underline hover:cursor-pointer hover:text-[#0065FE] transition ease-in-out delay-20"
                       key={i}
                     >
                       {item}
@@ -544,7 +544,7 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
                     'Code of Conduct',
                   ].map((item, i) => (
                     <li
-                      className="font-[500] text-[#112232] hover:underline hover:cursor-pointer hover:text-[#0065FE] transition ease-in-out delay-20"
+                      className="font-[400] text-[#112232] hover:underline hover:cursor-pointer hover:text-[#0065FE] transition ease-in-out delay-20"
                       key={i}
                     >
                       {item}
@@ -566,7 +566,7 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
                     'Reviews',
                   ].map((item, i) => (
                     <li
-                      className="font-[500] text-[#112232] hover:underline hover:cursor-pointer hover:text-[#0065FE] transition ease-in-out delay-20"
+                      className="font-[400] text-[#112232] hover:underline hover:cursor-pointer hover:text-[#0065FE] transition ease-in-out delay-20"
                       key={i}
                     >
                       {item}
