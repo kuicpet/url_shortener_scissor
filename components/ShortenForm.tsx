@@ -111,6 +111,7 @@ const ShortenForm: React.FC = () => {
 
   return (
     <section
+      id="try"
       className={
         !shortUrl
           ? `flex items-center justify-center mx-auto p-2 gap-2`

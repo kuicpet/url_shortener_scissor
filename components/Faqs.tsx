@@ -67,7 +67,7 @@ const Faqs: React.FC = () => {
           <h2 className="text-[#141414] text-[40px] font-bold">FAQs</h2>
         </span>
 
-        <div className="cursor-pointer flex items-center justify-center flex-col">
+        <div className="cursor-pointer flex items-center justify-center flex-col w-full">
           {faqs.map((item, index) => (
             <div key={index} className="w-full lg:w-[70%] p-3">
               <div

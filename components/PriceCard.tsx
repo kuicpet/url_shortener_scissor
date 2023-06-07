@@ -55,7 +55,7 @@ const PriceCard: React.FC<IPriceCard> = ({
       <div>
         <button
           type="button"
-          className="flex items-center justify-center h-12 my-10 bg-[#005AE2] text-white font-[600] rounded-full px-10 mx-auto"
+          className="flex items-center justify-center h-12 my-10 bg-[#005AE2] hover:bg-[#0e54bd] text-white font-[600] rounded-full px-10 mx-auto"
         >
           Select Pricing
         </button>

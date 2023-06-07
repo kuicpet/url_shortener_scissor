@@ -54,7 +54,7 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
         <div className="flex items-center justify-around lg:w-1/4 w-3/4 my-5 ">
           <Link
             href={'/'}
-            className="text-white font-semibold border-2 px-4 py-2 border-none outline-none rounded-full bg-[#0065FE] lg:w-[8rem]  flex items-center justify-center"
+            className="text-white font-semibold border-2 px-4 py-2 border-none outline-none rounded-full bg-[#0065FE] hover:bg-[#0e54bd] lg:w-[8rem]  flex items-center justify-center"
           >
             Sign Up
           </Link>
@@ -419,13 +419,13 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
             </h2>
             <button
               type="button"
-              className="flex items-center justify-center lg:h-[3rem] my-10 bg-[#005AE2] text-white font-[600] rounded-full px-10 mx-auto w-[200px] py-3"
+              className="flex items-center justify-center lg:h-[3rem] my-10 bg-[#005AE2] hover:bg-[#0e54bd] text-white font-[600] rounded-full px-10 mx-auto w-[200px] py-3"
             >
               Get Started
             </button>
           </div>
           <div className="flex lg:flex-row flex-col w-full lg:w-[90%] p-2 gap-2">
-            <div className="lg:w-[17%] w-full">
+            <div className="lg:w-[17%] w-full cursor-pointer">
               <Link href={'/'}>
                 <Image src={Logo} alt="" />
               </Link>

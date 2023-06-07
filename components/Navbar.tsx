@@ -55,8 +55,8 @@ const Navbar: React.FC = () => {
           Login
         </Link>
         <Link
-          href={'/'}
-          className="text-white font-semibold border-2 px-4 py-2 border-none outline-none rounded-full bg-[#0065FE] lg:w-[8rem]  flex items-center justify-center"
+          href={'#try'}
+          className="text-white font-semibold border-2 px-4 py-2 border-none outline-none rounded-full bg-[#0065FE] hover:bg-[#0e54bd] lg:w-[8rem]  flex items-center justify-center transition ease-in-out delay-75"
         >
           Try for free
         </Link>
