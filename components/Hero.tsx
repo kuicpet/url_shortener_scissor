@@ -28,7 +28,7 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
       <Navbar />
       <div className="flex items-center justify-center flex-col lg:mt-[6rem]   rounded-lg text-center">
         <div className="flex items-center flex-col justify-center text-[#141414]  m-6 relative">
-          <h1 className="lg:text-5xl text-2xl lg:text-center text-left   lg:my-3 font-bold">
+          <h1 className="lg:text-5xl text-2xl text-center   lg:my-3 font-bold">
             {title}
             <br />
             <br />
@@ -43,8 +43,8 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
             className="h-[0.6rem] lg:h-[1.5rem] absolute lg:bottom-[-20px] md:bottom-[-20px] bottom-[-10px] :left-[120px]"
           />
         </div>
-        <div className="my-2 flex items-center justify-center text-center">
-          <p className="text-[18px] lg:w-1/2 my-3 font-medium">
+        <div className="my-2 flex items-center justify-center lg:text-left text-center p-2">
+          <p className="text-[18px] lg:w-3/4 my-3 font-medium">
             Personalize your shortened URLs to align with your brand identity.
             Utilize custom slugs, branded links, and domain customization
             options to reinforce your brand presence and enhance user

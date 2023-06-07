@@ -24,7 +24,7 @@ const PriceCard: React.FC<IPriceCard> = ({
   icon,
 }) => {
   return (
-    <div>
+    <div className="m-2">
       <div className="border-[#005AE2] cursor-pointer border flex flex-col justify-center rounded-lg text-justify py-5 px-[3rem] lg:w-[22rem] w-full bg-[#FFFFFF] hover:bg-[#1E3448] hover:text-[#FFFFFF] hover:border-none transition ease-in-out delay-75 hover:scale-105">
         <h5 className="font-[500px] text-2xl">{plan}</h5>
         <h3 className="mt-6 mb-3 font-bold text-4xl">{price}</h3>

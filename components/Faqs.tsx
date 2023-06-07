@@ -78,7 +78,7 @@ const Faqs: React.FC = () => {
                   <h3 className="text-[#141414] text-lg font-[500] lg:text-justify text-left my-1 lg:w-3/4 w-full">
                     {item.ques}
                   </h3>
-                  <div className="hidden lg:flex transition ease-in-out delay-75">
+                  <div className="lg:flex transition ease-in-out delay-75">
                     {activeIndex !== index ? (
                       <Image src={PlusImg} alt="" />
                     ) : (
