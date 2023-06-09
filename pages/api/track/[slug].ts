@@ -30,6 +30,8 @@ export default async function track(req: NextApiRequest, res: NextApiResponse) {
       success: true,
       data: {
         originalUrl: url.originalUrl,
+        shortUrl: url.shortUrl,
+        clicks: url.clicks,
       },
     });
   } catch (error) {

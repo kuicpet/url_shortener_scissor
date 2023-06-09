@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { HiOutlineMenuAlt4, HiOutlineX } from 'react-icons/hi';
 import Logo from '../assets/Logo.svg';
 
 interface ILinks {
   text: string;
+}
+interface INavbar {
+  isDashboardPage?: boolean;
 }
 const Links: React.FC<ILinks> = ({ text }) => {
   return (
@@ -19,7 +23,7 @@ const Links: React.FC<ILinks> = ({ text }) => {
     </li>
   );
 };
-const Navbar: React.FC = () => {
+const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
 
   return (

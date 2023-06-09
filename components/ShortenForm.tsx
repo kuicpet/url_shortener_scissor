@@ -12,6 +12,7 @@ import UrlDetails from './UrlDetails';
 import { IUrl } from '../models/Url';
 import { ImMagicWand } from 'react-icons/im';
 import MagicWandImg from '../assets/magic wand (1).png';
+import Link from 'next/link';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 const ShortenForm: React.FC = () => {
@@ -193,52 +194,64 @@ const ShortenForm: React.FC = () => {
         )}
 
         {shortUrl && (
-          <div className="w-full">
-            <div className="my-3 p-2  text-center w-full bg-white">
-              <p className="font-bold text-[#005AE2]">Shortened Url</p>
-              <div className="flex items-center justify-center p-2">
-                <a
-                  className="px-3 underline hover:text-cyan-500 text-[#005AE2]"
-                  href={`api/redirect/${shortUrl}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {`${customDomain}/${shortUrl}`}
-                </a>
+          <>
+            <div className="w-full">
+              <div className="my-3 p-2  text-center w-full bg-white">
+                <p className="font-bold text-[#005AE2]">Shortened Url</p>
+                <div className="flex items-center justify-center p-2">
+                  <a
+                    className="px-3 underline hover:text-cyan-500 text-[#005AE2]"
+                    href={`api/redirect/${shortUrl}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {`${customDomain}/${shortUrl}`}
+                  </a>
 
-                <Button
-                  icon={<MdOutlineContentCopy />}
-                  type="button"
-                  text="Copy"
-                  className="flex items-center justify-center  lg:ml-5 font-medium border-[#005AE2] border-2 outline-none text-sm  lg:w-1/4 sm:w-auto px-5 py-1 text-center bg-white text-[#005AE2] rounded-full hover:text-white hover:bg-[#005AE2]"
-                  onClick={() =>
-                    copyShortUrl(`${baseUrl}/api/redirect/${shortUrl}`)
-                  }
-                />
-              </div>
-            </div>
-            {showQrCode && (
-              <div className="flex flex-col items-center text-center p-1">
-                <p>QR Code generated</p>
-                <div className="h-[144px] border-[8px] w-[144px] rounded-lg flex items-center justify-center p-2 m-2 s">
-                  <div className="p-2 w-[136px] h-[136px] border-[16px]  rounded-lg m-5 flex items-center justify-center bg-white">
-                    <QRCode
-                      value={shortUrl}
-                      size={120}
-                      ref={qrCodeRef}
-                      id="qrcode"
-                    />
-                  </div>
+                  <Button
+                    icon={<MdOutlineContentCopy />}
+                    type="button"
+                    text="Copy"
+                    className="flex items-center justify-center  lg:ml-5 font-medium border-[#005AE2] border-2 outline-none text-sm  lg:w-1/4 sm:w-auto px-5 py-1 text-center bg-white text-[#005AE2] rounded-full hover:text-white hover:bg-[#005AE2]"
+                    onClick={() =>
+                      copyShortUrl(`${baseUrl}/api/redirect/${shortUrl}`)
+                    }
+                  />
                 </div>
-                <Button
-                  onClick={downLoadQrCode}
-                  type="button"
-                  text="Download QR Code"
-                  className="font-medium border-2 border-[#005AE2] text-[#005AE2] rounded-full text-sm w-full lg:w-3/4 sm:w-auto px-5 py-2.5 text-center hover:bg-[#005AE2] hover:text-white transition ease-in-out delay-75"
-                />
               </div>
-            )}
-          </div>
+              {showQrCode && (
+                <React.Fragment>
+                  <div className="flex flex-col items-center text-center p-1">
+                    <p>QR Code generated</p>
+                    <div className="h-[144px] border-[8px] w-[144px] rounded-lg flex items-center justify-center p-2 m-2 s">
+                      <div className="p-2 w-[136px] h-[136px] border-[16px]  rounded-lg m-5 flex items-center justify-center bg-white">
+                        <QRCode
+                          value={shortUrl}
+                          size={120}
+                          ref={qrCodeRef}
+                          id="qrcode"
+                        />
+                      </div>
+                    </div>
+                    <div className="flex w-full items-center justify-between gap-3">
+                      <Button
+                        onClick={downLoadQrCode}
+                        type="button"
+                        text="Download QR Code"
+                        className="font-medium border-2 border-[#005AE2] text-[#005AE2] rounded-full text-sm w-full lg:w-1/2 sm:w-auto px-5 py-2.5 text-center hover:bg-[#005AE2] hover:text-white transition ease-in-out delay-75"
+                      />
+                      <Link
+                        className="font-medium border-2 border-[#005AE2] text-[#005AE2] rounded-full text-sm w-full lg:w-1/2 sm:w-auto px-5 py-2.5 text-center hover:bg-[#005AE2] hover:text-white transition ease-in-out delay-75"
+                        href={`/dashboard/${shortUrl}`}
+                      >
+                        View Analytics
+                      </Link>
+                    </div>
+                  </div>
+                </React.Fragment>
+              )}
+            </div>
+          </>
         )}
       </div>
     </section>
