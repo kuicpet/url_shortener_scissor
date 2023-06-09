@@ -59,7 +59,7 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
             Sign Up
           </Link>
           <Link
-            className="text-[#0065FE] font-semibold  px-3 flex items-center justify-center"
+            className="text-[#0065FE] font-semibold  px-3 flex items-center justify-center hover:underline"
             href={'/'}
           >
             Learn more

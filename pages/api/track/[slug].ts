@@ -1,12 +1,13 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import Url, { IUrl, IClick } from '../../models/Url';
-import { connect, disconnect } from '../../utils/db';
+import Url, { IUrl, IClick } from '../../../models/Url';
+import { connect } from '../../../utils/db';
 
 export default async function track(req: NextApiRequest, res: NextApiResponse) {
   const { slug } = req.body;
   try {
     await connect();
-    const url: IUrl | null = await Url.findOne({ shortUrl: slug });
+    const url: IUrl | null = await Url.findOne({ slug });
+
     if (!url) {
       res.status(404).json({
         success: false,

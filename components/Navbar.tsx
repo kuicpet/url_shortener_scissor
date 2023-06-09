@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
       </div>
       <div className="md:flex justify-around w-1/2 md:w-1/4 hidden">
         <Link
-          className="text-[#0065FE] font-semibold  px-3 flex items-center justify-center"
+          className="text-[#0065FE] font-semibold  px-3 flex items-center justify-center rounded-full w-1/2 hover:bg-[#0065FE] hover:text-white transition ease-in-out delay-75"
           href={'/'}
         >
           Login
@@ -81,7 +81,7 @@ const Navbar: React.FC = () => {
             <li className="text-xl w-full my-2">
               <HiOutlineX
                 fontSize={28}
-                className="cursor-pointer animate-slide-out"
+                className="cursor-pointer animate-slide-out rounded-full hover:bg-gray-300 p-1"
                 onClick={() => setToggleMenu(false)}
               />
             </li>
@@ -116,7 +116,7 @@ const Navbar: React.FC = () => {
                 Login
               </Link>
               <Link
-                href={'/'}
+                href={'#try'}
                 className="text-white font-semibold border-2 px-4 py-2 border-none outline-none rounded-full bg-[#0065FE] lg:w-[8rem]  flex items-center justify-center"
               >
                 Try for free

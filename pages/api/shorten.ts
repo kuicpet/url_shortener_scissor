@@ -65,8 +65,8 @@ export default async function shorten(
       shortUrl: shortUrl,
     });*/
     const newUrl: IUrl = new Url({
-      originalUrl,
-      shortUrl,
+      originalUrl: originalUrl,
+      shortUrl: shortUrl,
     });
     await newUrl.save();
 

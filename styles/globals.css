@@ -20,10 +20,6 @@ a {
   box-sizing: border-box;
 }
 
-svg:hover {
-  stroke: white;
-}
-
 .cardgrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

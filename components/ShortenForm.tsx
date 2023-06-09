@@ -139,7 +139,7 @@ const ShortenForm: React.FC = () => {
             <div className="flex w-full md:flex-row lg:flex-row flex-col   justify-around gap-2">
               <input
                 className="border border-[#3284FF]  text-[#3284FF]  text-sm  focus:ring-black focus:border-black outline-none block w-full lg:w-1/2 p-3 rounded-lg placeholder:text-[#3284FF]"
-                type="url"
+                type="text"
                 placeholder="Customize domain"
                 value={customDomain}
                 onChange={(e) => setCustomDomain(e.target.value)}
