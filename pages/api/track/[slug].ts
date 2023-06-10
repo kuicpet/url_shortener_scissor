@@ -6,7 +6,7 @@ export default async function track(req: NextApiRequest, res: NextApiResponse) {
   const { slug } = req.body;
   try {
     await connect();
-    const url: IUrl | null = await Url.findOne({ slug });
+    const url: IUrl | null = await Url.findOne({ shortUrl: slug });
 
     if (!url) {
       res.status(404).json({
