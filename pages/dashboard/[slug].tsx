@@ -5,10 +5,15 @@ import axios from 'axios';
 import { Navbar } from '../../components';
 import { formatTimestamp } from '../../utils/formatTimestamp';
 
+const pageSize = 10;
 const DashboardPage = () => {
   const router = useRouter();
   const { slug } = router.query;
   const [urlDetails, setUrlDetails] = useState<any>({});
+  const [page, setPage] = useState(1);
+  const steps = page * pageSize - pageSize;
+  let pageCount;
+
   useEffect(() => {
     const fetchUrls = async () => {
       try {
@@ -54,16 +59,33 @@ const DashboardPage = () => {
             </ul>
           </div>
           <div className="border border-[#0065FE] my-3 h-auto rounded-lg p-2">
-            {urlDetails?.data?.clicks?.map((item: any, i: number) => (
-              <ul key={i} className="">
-                <li className="flex justify-evenly border p-1">
-                  Clicked at {formatTimestamp(item.clickedAt)}{' '}
-                  <span className="font-semibold">
-                    IP Address {item.ipAddress}
-                  </span>
-                </li>
-              </ul>
-            ))}
+            {urlDetails &&
+              urlDetails?.data?.clicks
+                ?.slice(steps, steps + pageSize)
+                .map((item: any, i: number) => (
+                  <ul key={i} className="">
+                    <li className="flex justify-evenly border p-1">
+                      Clicked at {formatTimestamp(item.clickedAt)}{' '}
+                      <span className="font-semibold">
+                        IP Address {item.ipAddress}
+                      </span>
+                    </li>
+                  </ul>
+                ))}
+          </div>
+          <div className="flex justify-between p-2">
+            <button
+              className="border-2 border-black w-1/4 rounded-full cursor-pointer"
+              onClick={() => setPage((prev) => prev - 1)}
+            >
+              Prev
+            </button>
+            <button
+              className="border-2 border-black w-1/4 rounded-full cursor-pointer"
+              onClick={() => setPage((prev) => prev + 1)}
+            >
+              Next
+            </button>
           </div>
         </div>
       </div>
