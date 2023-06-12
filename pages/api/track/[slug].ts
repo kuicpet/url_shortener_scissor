@@ -1,6 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import Url, { IUrl, IClick } from '../../../models/Url';
 import { connect } from '../../../utils/db';
+import { convertIPtoLocation } from '../../../utils/getGeoloaction';
+import { formatTimestamp } from '../../../utils/formatTimestamp';
 
 export default async function track(req: NextApiRequest, res: NextApiResponse) {
   const { slug } = req.query;
@@ -12,11 +14,12 @@ export default async function track(req: NextApiRequest, res: NextApiResponse) {
       // Get visitor's IP address
       const ipAddress =
         (req.headers['x-forwarded-for'] as string) || req.socket.remoteAddress!;
-
+      const location = await convertIPtoLocation(ipAddress);
       // Update url clicks and store Ip address
       url.clicks.push({
         clickedAt: new Date(),
         ipAddress,
+        location,
       });
       await url.save();
 

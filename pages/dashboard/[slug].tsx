@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import axios from 'axios';
 import { Navbar } from '../../components';
+import { formatTimestamp } from '../../utils/formatTimestamp';
 
 const DashboardPage = () => {
   const router = useRouter();
@@ -24,7 +25,7 @@ const DashboardPage = () => {
   return (
     <div>
       <Navbar />
-      <div className="h-[100vh] w-full flex lg:flex-row flex-col">
+      <div className="h-auto w-full flex lg:flex-row flex-col">
         <div className="flex justify-center lg:w-[18%] lg:h-[92vh]  m-3">
           <ul className="w-full text-center">
             <li className="mb-2">
@@ -35,18 +36,34 @@ const DashboardPage = () => {
             </li>
           </ul>
         </div>
-        <div className="flex flex-col lg:w-[82%] h-[100vh] border border-[#0065FE] m-3 p-2 rounded-md">
+        <div className="flex flex-col lg:w-[82%] h-auto border border-[#0065FE] m-3 p-2 rounded-md">
           <h2 className="text-xl font-semibold">Shortened Url Details</h2>
-          <div className="border-2 border-black my-3 rounded-lg">
+          <div className="border border-[#0065FE] my-3 rounded-lg">
             <ul className="p-2">
-              <li className="text-semibold">
-                Original Url: {urlDetails?.data?.originalUrl}
+              <li>
+                <span className="font-semibold">Original Url:</span>{' '}
+                {urlDetails?.data?.originalUrl}
               </li>
-              <li className="text-semibold">Shortened Url: {slug}</li>
-              <li className="text-semibold">
-                Number of Clicks: {urlDetails?.data?.clicks?.length} clicks
+              <li>
+                <span className="font-semibold">Shortened Url:</span> {slug}
+              </li>
+              <li>
+                <span className="font-semibold"> Number of Clicks:</span>{' '}
+                {urlDetails?.data?.clicks?.length} clicks
               </li>
             </ul>
+          </div>
+          <div className="border border-[#0065FE] my-3 h-auto rounded-lg p-2">
+            {urlDetails?.data?.clicks?.map((item: any, i: number) => (
+              <ul key={i} className="">
+                <li className="flex justify-evenly border p-1">
+                  Clicked at {formatTimestamp(item.clickedAt)}{' '}
+                  <span className="font-semibold">
+                    IP Address {item.ipAddress}
+                  </span>
+                </li>
+              </ul>
+            ))}
           </div>
         </div>
       </div>

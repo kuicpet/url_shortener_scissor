@@ -1,5 +1,4 @@
-import React, { useState, useRef } from 'react';
-import { useRouter } from 'next/router';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import QRCode from 'qrcode.react';
 import { saveAs } from 'file-saver';
@@ -8,15 +7,11 @@ import { toast, Toaster } from 'react-hot-toast';
 import { MdOutlineContentCopy } from 'react-icons/md';
 import Loader from './Loader';
 import Button from './Button';
-import UrlDetails from './UrlDetails';
-import { IUrl } from '../models/Url';
 import { ImMagicWand } from 'react-icons/im';
-import MagicWandImg from '../assets/magic wand (1).png';
 import Link from 'next/link';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 const ShortenForm: React.FC = () => {
-  const rounter = useRouter();
   const qrCodeRef = useRef<any>(null);
 
   const [originalUrl, setOriginalUrl] = useState<string>('');
@@ -27,7 +22,14 @@ const ShortenForm: React.FC = () => {
   const [error, setError] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [showConfetti, setShowConfetti] = useState<boolean>(false);
-  const [urlDetails, setUrlDetails] = useState<IUrl | null>(null);
+
+  useEffect(() => {
+    const storedShortUrl = localStorage.getItem('shortUrl');
+    if (storedShortUrl) {
+      setShortUrl(storedShortUrl);
+      setShowQrCode(true);
+    }
+  }, []);
 
   // Submit form
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -56,15 +58,17 @@ const ShortenForm: React.FC = () => {
       }, 6000);
       // console.log(response.data);
       setShortUrl(response.data.shortUrl);
-      setUrlDetails(response.data);
-      setShowQrCode(true);
+
       /* if (qrCodeRef.current) {
         const canvas = qrCodeRef.current.getElementByTagName('canvas')[0];
         canvas.toBlob((blob: any) => {
           saveAs(blob, 'qrcode.png');
         });
       }*/
-
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem('shortUrl', response.data.shortUrl);
+      }
+      setShowQrCode(true);
       setLoading(false);
     } catch (error: any) {
       // console.error(error?.response?.data);
@@ -233,7 +237,7 @@ const ShortenForm: React.FC = () => {
                         />
                       </div>
                     </div>
-                    <div className="flex w-full items-center lg:justify-between justify-around gap-3">
+                    <div className="flex sm:flex-col lg:flex-row md:flex-row w-full items-center lg:justify-between justify-around gap-3">
                       <Button
                         onClick={downLoadQrCode}
                         type="button"

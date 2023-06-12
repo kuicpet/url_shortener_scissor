@@ -4,6 +4,7 @@ import { Document, Schema, model, models } from 'mongoose';
 export interface IClick {
   clickedAt: Date;
   ipAddress: string;
+  location: string;
 }
 export interface IUrl extends Document {
   originalUrl: string;
@@ -45,6 +46,10 @@ const urlSchema = new Schema<IUrl>(
           required: true,
         },
         ipAddress: {
+          type: String,
+          required: true,
+        },
+        location: {
           type: String,
           required: true,
         },
