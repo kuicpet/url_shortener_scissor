@@ -4,6 +4,7 @@ import Link from 'next/link';
 import axios from 'axios';
 import { Navbar } from '../../components';
 import { formatTimestamp } from '../../utils/formatTimestamp';
+import { convertIPtoLocation } from '../../utils/getGeoloaction';
 
 const pageSize = 10;
 const DashboardPage = () => {
@@ -12,7 +13,6 @@ const DashboardPage = () => {
   const [urlDetails, setUrlDetails] = useState<any>({});
   const [page, setPage] = useState(1);
   const steps = page * pageSize - pageSize;
-  let pageCount;
 
   useEffect(() => {
     const fetchUrls = async () => {
@@ -75,13 +75,22 @@ const DashboardPage = () => {
           </div>
           <div className="flex justify-between p-2">
             <button
-              className="border-2 border-black w-1/4 rounded-full cursor-pointer"
+              disabled={page <= 1}
+              className="border-2 border-[#0065FE] font-semibold
+              text-[#0065FE] hover:bg-[#0065FE] py-1
+              hover:text-white w-1/4 rounded-full cursor-pointer
+              disabled:bg-[#b4bcc3] disabled:border-none 
+              disabled:text-white disabled:cursor-not-allowed outline-none"
               onClick={() => setPage((prev) => prev - 1)}
             >
               Prev
             </button>
             <button
-              className="border-2 border-black w-1/4 rounded-full cursor-pointer"
+              disabled={page >= urlDetails?.data?.clicks?.length / pageSize}
+              className="py-1 font-semibold border-2 border-[#0065FE] 
+              text-[#0065FE] hover:bg-[#0065FE] hover:text-white w-1/4 
+              rounded-full cursor-pointer disabled:bg-[#b4bcc3] disabled:border-none 
+              disabled:text-white disabled:cursor-not-allowed outline-none"
               onClick={() => setPage((prev) => prev + 1)}
             >
               Next

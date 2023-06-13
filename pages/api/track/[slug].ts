@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import Url, { IUrl, IClick } from '../../../models/Url';
 import { connect } from '../../../utils/db';
 import { convertIPtoLocation } from '../../../utils/getGeoloaction';
-import { formatTimestamp } from '../../../utils/formatTimestamp';
 
 export default async function track(req: NextApiRequest, res: NextApiResponse) {
   const { slug } = req.query;
