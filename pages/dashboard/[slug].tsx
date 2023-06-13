@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import axios from 'axios';
-import { Navbar } from '../../components';
+import moment from 'moment/moment';
+import { Loader, Navbar } from '../../components';
 import { formatTimestamp } from '../../utils/formatTimestamp';
+import { BiTimeFive } from 'react-icons/bi';
 import { convertIPtoLocation } from '../../utils/getGeoloaction';
 
 const pageSize = 10;
@@ -11,18 +13,23 @@ const DashboardPage = () => {
   const router = useRouter();
   const { slug } = router.query;
   const [urlDetails, setUrlDetails] = useState<any>({});
+  const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const steps = page * pageSize - pageSize;
 
   useEffect(() => {
     const fetchUrls = async () => {
       try {
+        setLoading(true);
         await axios.get(`/api/track/${slug}`).then((response) => {
           console.log(response.data);
           setUrlDetails(response?.data);
         });
+        setLoading(false);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchUrls();
@@ -41,9 +48,9 @@ const DashboardPage = () => {
             </li>
           </ul>
         </div>
-        <div className="flex flex-col lg:w-[82%] h-auto border border-[#0065FE] m-3 p-2 rounded-md">
+        <div className="flex flex-col lg:w-[82%] h-auto border  m-3 p-2 rounded-md">
           <h2 className="text-xl font-semibold">Shortened Url Details</h2>
-          <div className="border border-[#0065FE] my-3 rounded-lg">
+          <div className="border-2 border-black my-3 rounded-lg">
             <ul className="p-2">
               <li>
                 <span className="font-semibold">Original Url:</span>{' '}
@@ -58,14 +65,24 @@ const DashboardPage = () => {
               </li>
             </ul>
           </div>
-          <div className="border border-[#0065FE] my-3 h-auto rounded-lg p-2">
+          <div className="border-2 border-black my-3 h-auto rounded-lg p-2">
+            {loading && (
+              <div className="absolute inset-0 z-0 flex justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg">
+                <Loader />
+              </div>
+            )}
             {urlDetails &&
               urlDetails?.data?.clicks
                 ?.slice(steps, steps + pageSize)
                 .map((item: any, i: number) => (
                   <ul key={i} className="">
                     <li className="flex justify-evenly border p-1">
-                      Clicked at {formatTimestamp(item.clickedAt)}{' '}
+                      <span className="flex items-center justify-center">
+                        Clicked :
+                        <BiTimeFive className="mx-1" />
+                        {moment(formatTimestamp(item.clickedAt)).fromNow()}{' '}
+                        {formatTimestamp(item.clickedAt)}{' '}
+                      </span>
                       <span className="font-semibold">
                         IP Address {item.ipAddress}
                       </span>

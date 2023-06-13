@@ -9,6 +9,7 @@ import Loader from './Loader';
 import Button from './Button';
 import { ImMagicWand } from 'react-icons/im';
 import Link from 'next/link';
+import { IoAnalytics } from 'react-icons/io5';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 const ShortenForm: React.FC = () => {
@@ -248,7 +249,10 @@ const ShortenForm: React.FC = () => {
                         className="font-medium border-2 border-[#005AE2] text-[#005AE2] rounded-full text-sm w-full lg:w-1/2 sm:w-auto px-5 py-2.5 text-center hover:bg-[#005AE2] hover:text-white transition ease-in-out delay-75"
                         href={`/dashboard/${shortUrl}`}
                       >
-                        View Analytics
+                        <span className="flex items-center justify-center">
+                          <IoAnalytics size={16} className="mx-2" /> View
+                          Analytics
+                        </span>
                       </Link>
                     </div>
                   </div>
