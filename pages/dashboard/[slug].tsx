@@ -6,7 +6,6 @@ import moment from 'moment/moment';
 import { Loader, Navbar } from '../../components';
 import { formatTimestamp } from '../../utils/formatTimestamp';
 import { BiTimeFive } from 'react-icons/bi';
-import { convertIPtoLocation } from '../../utils/getGeoloaction';
 
 const pageSize = 10;
 const DashboardPage = () => {
@@ -84,7 +83,7 @@ const DashboardPage = () => {
                         {formatTimestamp(item.clickedAt)}{' '}
                       </span>
                       <span className="font-semibold">
-                        IP Address {item.ipAddress}
+                        IP Address {item.ipAddress} {`(${item.location})`}
                       </span>
                     </li>
                   </ul>
