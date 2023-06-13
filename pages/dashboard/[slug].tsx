@@ -47,7 +47,7 @@ const DashboardPage = () => {
             </li>
           </ul>
         </div>
-        <div className="flex flex-col lg:w-[82%] h-auto border  m-3 p-2 rounded-md">
+        <div className="flex flex-col lg:w-[82%] h-auto m-3 p-2 rounded-md">
           <h2 className="text-xl font-semibold">Shortened Url Details</h2>
           <div className="border-2 border-black my-3 rounded-lg">
             <ul className="p-2">

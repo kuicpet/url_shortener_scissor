@@ -238,7 +238,7 @@ const ShortenForm: React.FC = () => {
                         />
                       </div>
                     </div>
-                    <div className="flex sm:flex-col lg:flex-row md:flex-row w-full items-center lg:justify-between justify-around gap-3">
+                    <div className="flex flex-col lg:flex-row md:flex-row w-full items-center lg:justify-between justify-around gap-3">
                       <Button
                         onClick={downLoadQrCode}
                         type="button"
