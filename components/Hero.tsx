@@ -10,6 +10,7 @@ import Line from '../assets/Line 70.png';
 import PriceCard from './PriceCard';
 import ShortenForm from './ShortenForm';
 import Faqs from './Faqs';
+import LinkImage from '../assets/link-2.svg';
 import Logo from '../assets/FooterLogo.svg';
 import TwitterImg from '../assets/i.fi-social-twitter.svg';
 import InstaImg from '../assets/svg.feather.svg';
