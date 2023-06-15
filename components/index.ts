@@ -8,6 +8,7 @@ import Hero from './Hero';
 import Card from './Card';
 import PriceCard from './PriceCard';
 import Faqs from './Faqs';
+import Company from './Company';
 
 export {
   Footer,
@@ -20,4 +21,5 @@ export {
   Card,
   PriceCard,
   Faqs,
+  Company,
 };

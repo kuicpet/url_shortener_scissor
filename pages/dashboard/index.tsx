@@ -29,7 +29,10 @@ const Dashboard = () => {
     fetchUrls();
   }, []);
   return (
-    <div className="flex justify-center min-h-[100vh] w-full">Dashboard</div>
+    <div className="flex justify-center min-h-[100vh] w-full">
+      <div>Sidebar</div>
+      <div>Details</div>
+    </div>
   );
 };
 
