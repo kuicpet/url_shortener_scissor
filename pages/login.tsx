@@ -59,12 +59,14 @@ const LoginPage = () => {
           </div>
         </div>
         <div className=" my-3 w-full mx-5 h-full">
-          <form action="" className="m-2">
+          <form onSubmit={handleLogin} className="m-2">
             <div>
               <input
-                type="text"
+                type="email"
                 placeholder="Email address"
                 className="border-2 border-[#005AE2]  text-black my-5 text-sm  focus:ring-black focus:border-black outline-none block w-full p-3 rounded-lg placeholder:text-[#A0B1C0] "
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div>
@@ -72,6 +74,8 @@ const LoginPage = () => {
                 type="text"
                 placeholder="Password"
                 className="border-2 border-[#005AE2]  text-black  text-sm  focus:ring-black focus:border-black outline-none block w-full p-3 rounded-lg placeholder:text-[#A0B1C0]"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <div className="text-right text-[#3284FF] my-1 hover:underline">
                 <Link href={'/'}>Forgot your Password?</Link>
