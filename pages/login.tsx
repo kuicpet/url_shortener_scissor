@@ -113,12 +113,12 @@ const LoginPage = () => {
                   required
                   type="email"
                   placeholder="Email address"
-                  className="border-2 border-[#005AE2]  text-black my-5 text-sm  focus:ring-black focus:border-black outline-none block w-full p-3 rounded-lg placeholder:text-[#A0B1C0] "
+                  className="border-2 border-[#005AE2]  text-black my-5 text-sm   outline-none block w-full p-3 rounded-lg placeholder:text-[#A0B1C0] "
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <div className="flex border-2 border-[#005AE2] rounded-lg">
+              <div className="flex items-center justify-center border-2 border-[#005AE2] rounded-lg">
                 <input
                   required
                   minLength={6}

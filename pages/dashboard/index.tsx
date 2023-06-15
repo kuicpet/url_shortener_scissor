@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
 import axios from 'axios';
 import Logo from '../../assets/Logo.svg';
 import useAuthStore from '../../store/authStore';
+import { Loader } from '../../components';
 
 const Dashboard = () => {
   const router = useRouter();
   const { userProfile } = useAuthStore();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!userProfile) {
@@ -29,9 +31,18 @@ const Dashboard = () => {
     fetchUrls();
   }, []);
   return (
-    <div className="flex justify-center min-h-[100vh] w-full">
-      <div>Sidebar</div>
-      <div>Details</div>
+    <div className="flex  h-auto w-full lg:flex-row flex-col">
+      {loading && (
+        <div className="absolute inset-0 z-0 flex justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg">
+          <Loader />
+        </div>
+      )}
+      <div className="lg:w-[18%] border-2 border-black lg:h-[92vh]  m-3">
+        Sidebar
+      </div>
+      <div className="flex flex-col lg:w-[82%] h-auto m-3 p-2 rounded-md border-2 border-black">
+        Details
+      </div>
     </div>
   );
 };
