@@ -1,10 +1,11 @@
-import { Footer } from '../components';
+import { Footer, Navbar } from '../components';
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className="xl:w-[1200px] m-auto overflow-x-hidden h-[100vh]">
+    <div className="xl:w-[1200px] m-auto overflow-x-hidden h-[100vh] bg-welcome bg-no-repeat bg-auto">
+      <Navbar />
       <Component {...pageProps} />
       <Footer />
     </div>

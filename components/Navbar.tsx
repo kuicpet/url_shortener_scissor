@@ -54,7 +54,7 @@ const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
       <div className="md:flex justify-around w-1/2 md:w-1/4 hidden">
         <Link
           className="text-[#0065FE] font-semibold  px-3 flex items-center justify-center rounded-full w-1/2 hover:bg-[#0065FE] hover:text-white transition ease-in-out delay-75"
-          href={'/'}
+          href={'/login'}
         >
           Login
         </Link>

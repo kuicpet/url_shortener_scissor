@@ -26,7 +26,6 @@ interface IHero {
 const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
   return (
     <section data-testid="hero" className="h-full">
-      <Navbar />
       <div className="flex items-center justify-center flex-col lg:mt-[6rem]   rounded-lg text-center">
         <div className="flex items-center flex-col justify-center text-[#141414]  m-6 relative">
           <h1 className="lg:text-5xl text-2xl text-center   lg:my-3 font-bold">
@@ -54,7 +53,7 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
         </div>
         <div className="flex items-center justify-around lg:w-1/4 w-3/4 my-5 ">
           <Link
-            href={'/'}
+            href={'/register'}
             className="text-white font-semibold border-2 px-4 py-2 border-none outline-none rounded-full bg-[#0065FE] hover:bg-[#0e54bd] lg:w-[8rem]  flex items-center justify-center"
           >
             Sign Up
