@@ -2,6 +2,7 @@ import React from 'react';
 
 interface IButton {
   text?: string;
+  altText?: string;
   type?: 'button' | 'submit' | 'reset';
   onClick?: () => void;
   loading?: boolean;
@@ -17,6 +18,7 @@ const Button: React.FC<IButton> = ({
   className,
   disabled,
   icon,
+  altText,
 }) => {
   return (
     <button
@@ -25,7 +27,7 @@ const Button: React.FC<IButton> = ({
       className={className}
       disabled={disabled}
     >
-      <span>{!loading ? <>{text}</> : 'Trimming URL...'}</span>
+      <span>{!loading ? <>{text}</> : <>{altText}</>}</span>
       <span className="mx-3">{icon}</span>
     </button>
   );

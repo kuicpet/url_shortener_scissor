@@ -162,6 +162,7 @@ const ShortenForm: React.FC = () => {
               icon={<ImMagicWand />}
               loading={loading}
               disabled={!originalUrl}
+              altText="Trimming URL..."
               text="Trim URL"
               type="submit"
               className="flex items-center justify-center disabled:cursor-not-allowed disabled:bg-gray-500 bg-[#005AE2] my-10  font-bold outline-none border-none text-sm w-full  px-5 py-2.5 text-center text-white rounded-full"

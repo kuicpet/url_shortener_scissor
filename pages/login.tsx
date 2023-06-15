@@ -4,7 +4,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import Apple from '../assets/apple.png';
 import Google from '../assets/logo_googleg_48dp.png';
-import { Button } from '../components';
+import { Button, Loader } from '../components';
 import Link from 'next/link';
 
 const LoginPage = () => {
@@ -12,10 +12,12 @@ const LoginPage = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      setLoading(true);
       await axios
         .post(`/api/users/login`, {
           email,
@@ -25,12 +27,18 @@ const LoginPage = () => {
           console.log(response.data);
           router.push('/dashboard');
         });
+      setLoading(false);
     } catch (error) {
       console.error(error);
     }
   };
   return (
     <section className="h-full flex  justify-center m-5 ">
+      {loading && (
+        <div className="absolute inset-0 z-0 flex justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg">
+          <Loader />
+        </div>
+      )}
       <div className="flex flex-col justify-center items-center bg-white lg:w-1/2 p-2 rounded-md">
         <div>
           <h2 className="my-4">Log in with</h2>
@@ -83,6 +91,8 @@ const LoginPage = () => {
             </div>
             <div>
               <Button
+                loading={loading}
+                altText="Logging in..."
                 text="Log in"
                 type="submit"
                 className="flex items-center justify-center disabled:cursor-not-allowed disabled:bg-gray-500 bg-[#005AE2] my-4  font-bold outline-none border-none text-sm w-full  px-5 py-2.5 text-center text-white rounded-full"
