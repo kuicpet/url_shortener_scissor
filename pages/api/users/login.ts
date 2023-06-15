@@ -17,13 +17,14 @@ export default async function login(
     const user = await User.findOne({ email });
     if (user && bcrypt.compareSync(password, user.password)) {
       const token = signToken(user);
-      res.send({
+      res.status(200).json({
         token,
         _id: user._id,
         email: user.email,
+        message: 'User Login successful',
       });
     } else {
-      res.status(401).json({ message: 'Invalid user email or password' });
+      res.status(401).json({ message: 'Invalid User email or password' });
     }
   } catch (error: any) {
     console.error(error);

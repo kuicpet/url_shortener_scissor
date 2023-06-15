@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import { toast, Toaster } from 'react-hot-toast';
 import Image from 'next/image';
 import Apple from '../assets/apple.png';
 import Google from '../assets/logo_googleg_48dp.png';
@@ -24,16 +25,43 @@ const LoginPage = () => {
           password,
         })
         .then((response) => {
-          console.log(response.data);
-          router.push('/dashboard');
+          if (response.status === 200) {
+            toast.success(response?.data?.message, {
+              style: {
+                color: 'white',
+                backgroundColor: 'green',
+              },
+            });
+            console.log(response.data);
+          } else {
+            setLoading(false);
+            toast.error(response?.data?.message, {
+              style: {
+                color: 'white',
+                backgroundColor: 'red',
+              },
+            });
+            // console.log(response.data.message);
+            return;
+          }
+          // router.push('/dashboard');
         });
       setLoading(false);
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      // console.error(error);
+      toast.error(error?.response?.data?.message, {
+        style: {
+          color: 'white',
+          backgroundColor: 'red',
+        },
+      });
+    } finally {
+      setLoading(false);
     }
   };
   return (
     <section className="h-full flex  justify-center m-5 ">
+      <Toaster />
       {loading && (
         <div className="absolute inset-0 z-0 flex justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg">
           <Loader />
@@ -70,6 +98,7 @@ const LoginPage = () => {
           <form onSubmit={handleLogin} className="m-2">
             <div>
               <input
+                required
                 type="email"
                 placeholder="Email address"
                 className="border-2 border-[#005AE2]  text-black my-5 text-sm  focus:ring-black focus:border-black outline-none block w-full p-3 rounded-lg placeholder:text-[#A0B1C0] "
@@ -79,6 +108,7 @@ const LoginPage = () => {
             </div>
             <div>
               <input
+                required
                 type="text"
                 placeholder="Password"
                 className="border-2 border-[#005AE2]  text-black  text-sm  focus:ring-black focus:border-black outline-none block w-full p-3 rounded-lg placeholder:text-[#A0B1C0]"
@@ -91,11 +121,12 @@ const LoginPage = () => {
             </div>
             <div>
               <Button
+                disabled={!email || !password}
                 loading={loading}
                 altText="Logging in..."
                 text="Log in"
                 type="submit"
-                className="flex items-center justify-center disabled:cursor-not-allowed disabled:bg-gray-500 bg-[#005AE2] my-4  font-bold outline-none border-none text-sm w-full  px-5 py-2.5 text-center text-white rounded-full"
+                className="flex items-center justify-center disabled:cursor-not-allowed disabled:bg-gray-500 bg-[#005AE2] my-4  font-bold outline-none border-none text-md w-full  px-5 py-2.5 text-center text-white rounded-full hover:bg-[#0e54bd]"
               />
             </div>
             <div className="flex items-center justify-center">

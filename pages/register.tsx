@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import { toast, Toaster } from 'react-hot-toast';
 import Image from 'next/image';
 import Apple from '../assets/apple.png';
 import Google from '../assets/logo_googleg_48dp.png';
@@ -12,27 +13,56 @@ const RegisterPage = () => {
   const { redirect } = router.query;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [userbane, setUserbane] = useState('');
+  const [username, setUsername] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      toast.error('Passwords donot match', {
+        style: {
+          color: 'white',
+          backgroundColor: 'red',
+          width: '300px',
+        },
+      });
+      return;
+    }
     try {
+      setLoading(true);
       await axios
         .post(`/api/users/register`, {
+          username,
           email,
           password,
         })
         .then((response) => {
+          toast.success(response?.data?.message, {
+            style: {
+              color: 'white',
+              backgroundColor: 'green',
+            },
+          });
           console.log(response.data);
-          router.push('/login');
+          // router.push('/login');
         });
-    } catch (error) {
+      setLoading(false);
+    } catch (error: any) {
       console.error(error);
+      toast.error(error?.response?.data?.message, {
+        style: {
+          color: 'white',
+          backgroundColor: 'red',
+        },
+      });
+    } finally {
+      setLoading(false);
     }
   };
   return (
     <section className="h-auto flex  justify-center m-5 ">
+      <Toaster />
       {loading && (
         <div className="absolute inset-0 z-0 flex justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg">
           <Loader />
@@ -69,15 +99,17 @@ const RegisterPage = () => {
           <form onSubmit={handleRegister} className="m-2">
             <div>
               <input
+                required
                 type="text"
                 placeholder="Username"
                 className="border-2 border-[#005AE2]  text-black my-5 text-sm  focus:ring-black focus:border-black outline-none block w-full p-3 rounded-lg placeholder:text-[#A0B1C0] "
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               />
             </div>
             <div>
               <input
+                required
                 type="email"
                 placeholder="Email address"
                 className="border-2 border-[#005AE2]  text-black my-5 text-sm  focus:ring-black focus:border-black outline-none block w-full p-3 rounded-lg placeholder:text-[#A0B1C0] "
@@ -87,20 +119,24 @@ const RegisterPage = () => {
             </div>
             <div>
               <input
+                required
                 type="text"
                 placeholder="Password"
                 className="border-2 border-[#005AE2]  text-black  text-sm  focus:ring-black focus:border-black outline-none block w-full p-3 rounded-lg placeholder:text-[#A0B1C0] my-4"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                minLength={6}
               />
             </div>
             <div>
               <input
+                required
                 type="text"
                 placeholder="Retype Password"
                 className="border-2 border-[#005AE2]  text-black  text-sm  focus:ring-black focus:border-black outline-none block w-full p-3 rounded-lg placeholder:text-[#A0B1C0]"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                minLength={6}
               />
               <div className="text-left">
                 <small className="text-[#A0B1C0]">
@@ -111,11 +147,12 @@ const RegisterPage = () => {
             </div>
             <div>
               <Button
+                disabled={!username || !email || !password || !confirmPassword}
                 loading={loading}
-                altText="Logging in..."
+                altText="Signing up with Email..."
                 text="Sign up with Email"
                 type="submit"
-                className="flex items-center justify-center disabled:cursor-not-allowed disabled:bg-gray-500 bg-[#005AE2] my-4  font-bold outline-none border-none text-sm w-full  px-5 py-2.5 text-center text-white rounded-full"
+                className="flex items-center justify-center disabled:cursor-not-allowed disabled:bg-gray-500 bg-[#005AE2] my-4  font-bold outline-none border-none text-md w-full  px-5 py-2.5 text-center text-white rounded-full hover:bg-[#0e54bd] h-[40px]"
               />
             </div>
             <div className="flex items-center justify-center">
