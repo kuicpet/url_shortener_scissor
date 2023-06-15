@@ -9,11 +9,15 @@ import Loader from './Loader';
 import Button from './Button';
 import { ImMagicWand } from 'react-icons/im';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { IoAnalytics } from 'react-icons/io5';
+import useAuthStore from '../store/authStore';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 const ShortenForm: React.FC = () => {
+  const { userProfile } = useAuthStore();
   const qrCodeRef = useRef<any>(null);
+  const router = useRouter();
 
   const [originalUrl, setOriginalUrl] = useState<string>('');
   const [shortUrl, setShortUrl] = useState<string>('');
@@ -115,6 +119,13 @@ const ShortenForm: React.FC = () => {
     }
   };
 
+  const navigate = () => {
+    if (userProfile) {
+      router.push(`/dashboard/${shortUrl}`);
+    } else {
+      router.push(`/login`);
+    }
+  };
   return (
     <section
       id="try"
@@ -246,15 +257,15 @@ const ShortenForm: React.FC = () => {
                         text="Download QR Code"
                         className="font-medium border-2 border-[#005AE2] text-[#005AE2] rounded-full text-sm w-full lg:w-1/2 sm:w-auto px-5 py-2.5 text-center hover:bg-[#005AE2] hover:text-white transition ease-in-out delay-75"
                       />
-                      <Link
+                      <button
                         className="font-medium border-2 border-[#005AE2] text-[#005AE2] rounded-full text-sm w-full lg:w-1/2 sm:w-auto px-5 py-2.5 text-center hover:bg-[#005AE2] hover:text-white transition ease-in-out delay-75"
-                        href={`/dashboard/${shortUrl}`}
+                        onClick={() => navigate()}
                       >
                         <span className="flex items-center justify-center">
                           <IoAnalytics size={16} className="mx-2" /> View
                           Analytics
                         </span>
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </React.Fragment>

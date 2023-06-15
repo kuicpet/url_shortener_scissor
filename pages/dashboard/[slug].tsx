@@ -3,18 +3,26 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import axios from 'axios';
 import moment from 'moment/moment';
+import { BiTimeFive } from 'react-icons/bi';
 import { Loader, Navbar } from '../../components';
 import { formatTimestamp } from '../../utils/formatTimestamp';
-import { BiTimeFive } from 'react-icons/bi';
+import useAuthStore from '../../store/authStore';
 
 const pageSize = 10;
 const DashboardPage = () => {
+  const { userProfile } = useAuthStore();
   const router = useRouter();
   const { slug } = router.query;
   const [urlDetails, setUrlDetails] = useState<any>({});
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const steps = page * pageSize - pageSize;
+
+  useEffect(() => {
+    if (!userProfile) {
+      router.push('/login');
+    }
+  });
 
   useEffect(() => {
     const fetchUrls = async () => {
@@ -35,7 +43,6 @@ const DashboardPage = () => {
   }, [slug]);
   return (
     <div>
-      <Navbar />
       <div className="h-auto w-full flex lg:flex-row flex-col">
         <div className="flex justify-center lg:w-[18%] lg:h-[92vh]  m-3">
           <ul className="w-full text-center">

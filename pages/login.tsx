@@ -3,12 +3,14 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import { toast, Toaster } from 'react-hot-toast';
 import Image from 'next/image';
+import Link from 'next/link';
 import Apple from '../assets/apple.png';
 import Google from '../assets/logo_googleg_48dp.png';
 import { Button, Loader } from '../components';
-import Link from 'next/link';
+import useAuthStore from '../store/authStore';
 
 const LoginPage = () => {
+  const { userProfile, loginUser } = useAuthStore();
   const router = useRouter();
 
   const [email, setEmail] = useState('');
@@ -32,7 +34,9 @@ const LoginPage = () => {
                 backgroundColor: 'green',
               },
             });
-            console.log(response.data);
+            //console.log(response.data);
+            loginUser(response.data);
+            router.push('/dashboard');
           } else {
             setLoading(false);
             toast.error(response?.data?.message, {

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import useAuthStore from '../store/authStore';
 import Image from 'next/image';
 import { HiOutlineMenuAlt4, HiOutlineX } from 'react-icons/hi';
+import { AiOutlineLogout } from 'react-icons/ai';
 import Logo from '../assets/Logo.svg';
+import Button from './Button';
 
 interface ILinks {
   text: string;
@@ -24,6 +27,7 @@ const Links: React.FC<ILinks> = ({ text }) => {
   );
 };
 const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
+  const { userProfile, logoutUser }: any = useAuthStore();
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
 
   return (
@@ -52,12 +56,21 @@ const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
         </Link>
       </div>
       <div className="md:flex justify-around w-1/2 md:w-1/4 hidden">
-        <Link
-          className="text-[#0065FE] font-semibold  px-3 flex items-center justify-center rounded-full w-1/2 hover:bg-[#0065FE] hover:text-white transition ease-in-out delay-75"
-          href={'/login'}
-        >
-          Login
-        </Link>
+        {userProfile ? (
+          <Button
+            icon={<AiOutlineLogout />}
+            className="text-[red] font-semibold  pl-3 w-1/2 flex items-center justify-center border-2 border-[red] rounded-full hover:bg-[red] hover:text-white"
+            text="Logout"
+            onClick={() => logoutUser()}
+          />
+        ) : (
+          <Link
+            className="text-[#0065FE] font-semibold  px-3 flex items-center justify-center w-1/2 rounded-full hover:bg-[#0065FE] hover:text-white  hover:border-[#0065FE]"
+            href={'/login'}
+          >
+            Login
+          </Link>
+        )}
         <Link
           href={'#try'}
           className="text-white font-semibold border-2 px-4 py-2 border-none outline-none rounded-full bg-[#0065FE] hover:bg-[#0e54bd] lg:w-[8rem]  flex items-center justify-center transition ease-in-out delay-75"
@@ -96,36 +109,30 @@ const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
             )}
 
             <li className="my-2">
-              <Link
-                className="text-[#0065FE] font-semibold  px-3 flex items-center justify-center"
-                href={'/'}
-              >
-                Login
-              </Link>
+              {userProfile ? (
+                <Button
+                  icon={<AiOutlineLogout />}
+                  className="text-[red] font-semibold  pl-3 w-full py-1 flex items-center justify-center border-2 border-[red] rounded-full hover:bg-[red] hover:text-white"
+                  text="Logout"
+                  onClick={() => logoutUser()}
+                />
+              ) : (
+                <Link
+                  className="text-[#0065FE] font-semibold  px-4 py-1 w-[124px] border-2 border-[#0065FE] flex items-center justify-center hover:bg-[#0065FE]  rounded-full  hover:text-white"
+                  href={'/login'}
+                >
+                  Login
+                </Link>
+              )}
             </li>
             <li className="my-2">
               <Link
-                href={'/'}
-                className="text-white font-semibold border-2 px-4 py-2 border-none outline-none rounded-full bg-[#0065FE] lg:w-[8rem]  flex items-center justify-center"
+                href={'/#try'}
+                className="text-white font-semibold  px-4 py-2 border-none outline-none rounded-full bg-[#0065FE] lg:w-[8rem]  flex items-center justify-center"
               >
                 Try for free
               </Link>
             </li>
-
-            <div className="md:flex justify-around w-1/2 md:w-1/4 hidden">
-              <Link
-                className="text-[#0065FE] font-semibold  px-3 flex items-center justify-center"
-                href={'/'}
-              >
-                Login
-              </Link>
-              <Link
-                href={'#try'}
-                className="text-white font-semibold border-2 px-4 py-2 border-none outline-none rounded-full bg-[#0065FE] lg:w-[8rem]  flex items-center justify-center"
-              >
-                Try for free
-              </Link>
-            </div>
           </ul>
         )}
       </div>

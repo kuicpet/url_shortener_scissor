@@ -4,9 +4,17 @@ import Link from 'next/link';
 import Image from 'next/image';
 import axios from 'axios';
 import Logo from '../../assets/Logo.svg';
+import useAuthStore from '../../store/authStore';
 
 const Dashboard = () => {
   const router = useRouter();
+  const { userProfile } = useAuthStore();
+
+  useEffect(() => {
+    if (!userProfile) {
+      router.push('/login');
+    }
+  });
 
   useEffect(() => {
     const fetchUrls = async () => {
@@ -21,16 +29,7 @@ const Dashboard = () => {
     fetchUrls();
   }, []);
   return (
-    <div className="flex justify-center min-h-[100vh] w-full">
-      <div className="flex  h-1/2  w-full border-2 border-black">
-        <Link
-          href={`/`}
-          className="flex items-center justify-between p-2 my-2 mx-5"
-        >
-          <Image src={Logo} alt="" />
-        </Link>
-      </div>
-    </div>
+    <div className="flex justify-center min-h-[100vh] w-full">Dashboard</div>
   );
 };
 

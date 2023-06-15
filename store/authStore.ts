@@ -4,6 +4,7 @@ import { persist } from 'zustand/middleware';
 const authStore = (set: any) => ({
   userProfile: null,
   loginUser: (user: any) => set({ userProfile: user }),
+  logoutUser: () => set({ userProfile: null }),
 });
 
 const useAuthStore = create(persist(authStore, { name: 'auth' }));
