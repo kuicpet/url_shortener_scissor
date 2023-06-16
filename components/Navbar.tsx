@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import useAuthStore from '../store/authStore';
 import Image from 'next/image';
 import { HiOutlineMenuAlt4, HiOutlineX } from 'react-icons/hi';
 import { AiOutlineLogout } from 'react-icons/ai';
+import useAuthStore from '../store/authStore';
+
 import Logo from '../assets/Logo.svg';
 import Button from './Button';
 
@@ -55,14 +56,16 @@ const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
           FAQS
         </Link>
       </div>
-      <div className="md:flex justify-around w-1/2 md:w-1/4 hidden">
+      <div className="md:flex justify-around w-1/2 border-2 border-black md:w-1/4 hidden">
         {userProfile ? (
-          <Button
-            icon={<AiOutlineLogout />}
-            className="text-[red] font-semibold  pl-3 w-1/2 flex items-center justify-center border-2 border-[red] rounded-full hover:bg-[red] hover:text-white"
-            text="Logout"
-            onClick={() => logoutUser()}
-          />
+          <>
+            <Button
+              icon={<AiOutlineLogout />}
+              className="text-[red] font-semibold  pl-3 w-1/2 flex items-center justify-center border-2 border-[red] rounded-full hover:bg-[red] hover:text-white"
+              text="Logout"
+              onClick={() => logoutUser()}
+            />
+          </>
         ) : (
           <Link
             className="text-[#0065FE] font-semibold  px-3 flex items-center justify-center w-1/2 rounded-full hover:bg-[#0065FE] hover:text-white  hover:border-[#0065FE]"

@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
 import axios from 'axios';
+import { CiUser } from 'react-icons/ci';
 import Logo from '../../assets/Logo.svg';
 import useAuthStore from '../../store/authStore';
 import { Loader } from '../../components';
@@ -37,8 +38,12 @@ const Dashboard = () => {
           <Loader />
         </div>
       )}
-      <div className="flex justify-center lg:w-[20%] bg-white lg:h-[92vh]  m-3 rounded-sm p-2">
-        <p>Hello {userProfile?.username}</p>
+      <div className="flex flex-col lg:w-[20%] bg-white lg:h-[92vh]  m-3 rounded-sm p-2">
+        <div className="flex items-center border-2 border-black px-2 rounded-md">
+          <p className="font-semibold text-md">
+            Hello, {userProfile?.username}
+          </p>
+        </div>
       </div>
       <div className="flex flex-col lg:w-[80%] h-auto m-3 p-2 rounded-md bg-white">
         Details
