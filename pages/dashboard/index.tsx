@@ -9,7 +9,7 @@ import { Loader } from '../../components';
 
 const Dashboard = () => {
   const router = useRouter();
-  const { userProfile } = useAuthStore();
+  const { userProfile }: any = useAuthStore();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -37,10 +37,10 @@ const Dashboard = () => {
           <Loader />
         </div>
       )}
-      <div className="lg:w-[18%] border-2 border-black lg:h-[92vh]  m-3">
-        Sidebar
+      <div className="flex justify-center lg:w-[20%] bg-white lg:h-[92vh]  m-3 rounded-sm p-2">
+        <p>Hello {userProfile?.username}</p>
       </div>
-      <div className="flex flex-col lg:w-[82%] h-auto m-3 p-2 rounded-md border-2 border-black">
+      <div className="flex flex-col lg:w-[80%] h-auto m-3 p-2 rounded-md bg-white">
         Details
       </div>
     </div>

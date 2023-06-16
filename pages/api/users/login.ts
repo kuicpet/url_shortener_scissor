@@ -21,6 +21,7 @@ export default async function login(
         token,
         _id: user._id,
         email: user.email,
+        username: user.username,
         message: 'User Login successful',
       });
     } else {

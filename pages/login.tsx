@@ -37,7 +37,7 @@ const LoginPage = () => {
               },
             });
             //console.log(response.data);
-            loginUser(response.data);
+            loginUser(response?.data);
             router.push('/dashboard');
           } else {
             setLoading(false);

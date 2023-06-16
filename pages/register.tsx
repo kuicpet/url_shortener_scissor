@@ -4,14 +4,16 @@ import axios from 'axios';
 import { toast, Toaster } from 'react-hot-toast';
 import Image from 'next/image';
 import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
-import Apple from '../assets/apple.png';
-import Google from '../assets/logo_googleg_48dp.png';
 import { Button, Company, Loader } from '../components';
 import Link from 'next/link';
+import useAuthStore from '../store/authStore';
+import Google from '../assets/logo_googleg_48dp.png';
+import Apple from '../assets/apple.png';
 
 const RegisterPage = () => {
   const router = useRouter();
   const { redirect } = router.query;
+  const { userProfile, registerUser } = useAuthStore();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
@@ -47,8 +49,9 @@ const RegisterPage = () => {
               backgroundColor: 'green',
             },
           });
-          console.log(response.data);
-          // router.push('/login');
+          registerUser(response?.data);
+          // console.log(response.data);
+          router.push('/login');
         });
       setLoading(false);
     } catch (error: any) {
