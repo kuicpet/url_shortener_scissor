@@ -69,6 +69,13 @@ const Dashboard = () => {
         data: urls.map((url: any) => url.clicks.length),
         backgroundColor: '#005AE2',
       },
+      {
+        label: 'IpAddresses',
+        data: urls.map((url: any) =>
+          url.clicks.map((click: any) => click.ipAddress)
+        ),
+        backgroundColor: 'red',
+      },
     ],
   };
 
