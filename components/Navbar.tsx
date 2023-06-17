@@ -56,7 +56,7 @@ const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
           FAQS
         </Link>
       </div>
-      <div className="md:flex justify-around w-1/2 border-2 border-black md:w-1/4 hidden">
+      <div className="md:flex justify-around w-1/2  md:w-1/4 hidden">
         {userProfile ? (
           <>
             <Button

@@ -8,9 +8,7 @@ export default async function track(req: NextApiRequest, res: NextApiResponse) {
     const urls: any = await Url.find({});
     res.status(200).json({
       success: true,
-      data: {
-        urls,
-      },
+      urls,
     });
   } catch (error) {
     console.error(error);
