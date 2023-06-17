@@ -39,7 +39,7 @@ const Dashboard = () => {
         setLoading(true);
         await axios.get(`/api/track/`).then((response) => {
           setUrls(response?.data?.urls);
-          console.log(response?.data?.urls);
+          // console.log(response?.data?.urls);
         });
       } catch (error) {
         console.log(error);
