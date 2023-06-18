@@ -19,7 +19,7 @@ import axios from 'axios';
 import { CiUser } from 'react-icons/ci';
 import Logo from '../../assets/Logo.svg';
 import useAuthStore from '../../store/authStore';
-import { Loader } from '../../components';
+import { Loader, Meta } from '../../components';
 
 const Dashboard = () => {
   const router = useRouter();
@@ -113,43 +113,51 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex  h-auto w-full lg:flex-row flex-col">
-      {loading && (
-        <div className="absolute inset-0 z-0 flex justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg">
-          <Loader />
+    <React.Fragment>
+      <Meta
+        title="Dashboard- Scissor"
+        description="Dashboard showing Urls generated"
+      />
+      <div className="flex  h-auto w-full lg:flex-row flex-col">
+        {loading && (
+          <div className="absolute inset-0 z-0 flex justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg">
+            <Loader />
+          </div>
+        )}
+        <div className="flex flex-col lg:w-[20%] bg-white lg:h-auto  m-3 rounded-sm p-2">
+          <div className="flex items-center justify-center  px-2">
+            <p className="font-semibold text-lg">
+              Hi, {userProfile?.username || 'User'}
+            </p>
+          </div>
+          <div className="flex flex-col items-start justify-center my-3 border-2 border-black p-2 rounded-lg">
+            <p className="font-semibold text-sm">
+              Total Urls Generated: {urls?.length} urls
+            </p>
+            <p className="font-semibold text-sm">
+              Active Urls: {filteredUrls?.length} urls
+            </p>
+          </div>
+          <div>
+            <ul className="lg:flex grid md:grid-cols-4 grid-cols-2 gap-2 p-2 flex-col items-center justify-center border-2 border-black rounded-lg h-auto">
+              {filteredUrls.map((url: any, i: number) => (
+                <li
+                  className="px-3 w-full border border-black cursor-pointer hover:bg-slate-200"
+                  key={i}
+                >
+                  <Link href={`/dashboard/${url.shortUrl}`}>
+                    {url.shortUrl}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      )}
-      <div className="flex flex-col lg:w-[20%] bg-white lg:h-auto  m-3 rounded-sm p-2">
-        <div className="flex items-center justify-center  px-2">
-          <p className="font-semibold text-lg">
-            Hi, {userProfile?.username || 'User'}
-          </p>
-        </div>
-        <div className="flex flex-col items-start justify-center my-3 border-2 border-black p-2 rounded-lg">
-          <p className="font-semibold text-sm">
-            Total Urls Generated: {urls?.length} urls
-          </p>
-          <p className="font-semibold text-sm">
-            Active Urls: {filteredUrls?.length} urls
-          </p>
-        </div>
-        <div>
-          <ul className="lg:flex grid md:grid-cols-4 grid-cols-2 gap-2 p-2 flex-col items-center justify-center border-2 border-black rounded-lg h-auto">
-            {filteredUrls.map((url: any, i: number) => (
-              <li
-                className="px-3 w-full border border-black cursor-pointer hover:bg-slate-200"
-                key={i}
-              >
-                <Link href={`/dashboard/${url.shortUrl}`}>{url.shortUrl}</Link>
-              </li>
-            ))}
-          </ul>
+        <div className="flex flex-col lg:w-[80%] h-[92vh] m-3 p-2 rounded-md bg-white">
+          <Line data={chartData} options={chartOptions} />
         </div>
       </div>
-      <div className="flex flex-col lg:w-[80%] h-[92vh] m-3 p-2 rounded-md bg-white">
-        <Line data={chartData} options={chartOptions} />
-      </div>
-    </div>
+    </React.Fragment>
   );
 };
 

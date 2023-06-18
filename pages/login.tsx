@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
 import Apple from '../assets/apple.png';
 import Google from '../assets/logo_googleg_48dp.png';
-import { Button, Company, Loader } from '../components';
+import { Button, Company, Loader, Meta } from '../components';
 import useAuthStore from '../store/authStore';
 
 const LoginPage = () => {
@@ -72,6 +72,7 @@ const LoginPage = () => {
 
   return (
     <>
+      <Meta title="Login" />
       <section className="h-full flex  justify-center m-5 ">
         <Toaster />
         {loading && (

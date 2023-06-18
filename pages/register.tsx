@@ -4,7 +4,7 @@ import axios from 'axios';
 import { toast, Toaster } from 'react-hot-toast';
 import Image from 'next/image';
 import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
-import { Button, Company, Loader } from '../components';
+import { Button, Company, Loader, Meta } from '../components';
 import Link from 'next/link';
 import useAuthStore from '../store/authStore';
 import Google from '../assets/logo_googleg_48dp.png';
@@ -76,6 +76,7 @@ const RegisterPage = () => {
   };
   return (
     <>
+      <Meta title="Registration" />
       <section className="h-auto flex  justify-center m-5 ">
         <Toaster />
         {loading && (
