@@ -48,32 +48,32 @@ const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
       </Link>
       <div className="md:flex flex-initial justify-between lg:w-1/3 text-[#141414] font-semibold hidden">
         <Link
-          className={router.pathname === '/urls' ? activeLink : normalLink}
-          href={'/'}
+          className={router.pathname === '/dashboard' ? activeLink : normalLink}
+          href={'/dashboard'}
         >
           My URLs
         </Link>
         <Link
           className={router.pathname === '/features' ? activeLink : normalLink}
-          href={'/'}
+          href={'/#features'}
         >
           Features
         </Link>
         <Link
           className={router.pathname === '/pricing' ? activeLink : normalLink}
-          href={'/'}
+          href={'/#pricing'}
         >
           Pricing
         </Link>
         <Link
           className={router.pathname === '/analytics' ? activeLink : normalLink}
-          href={'/'}
+          href={'/dashboard'}
         >
           Analytics
         </Link>
         <Link
           className={router.pathname === '/faqs' ? activeLink : normalLink}
-          href={'/'}
+          href={'/#faqs'}
         >
           FAQS
         </Link>
@@ -81,8 +81,8 @@ const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
       <div
         className={
           userProfile
-            ? `md:flex justify-between lg:w-1/3  md:w-1/2 hidden ml-auto`
-            : 'md:flex justify-between lg:w-1/3  md:w-1/2 hidden'
+            ? `md:flex justify-between lg:w-1/3  md:w-1/2`
+            : 'md:flex justify-around lg:w-1/3  md:w-1/2 hidden ml-auto'
         }
       >
         {userProfile ? (
@@ -104,19 +104,15 @@ const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
           </>
         ) : (
           <Link
-            className="text-[#0065FE] font-semibold  px-3 flex items-center justify-center w-1/2 rounded-full hover:bg-[#0065FE] hover:text-white  hover:border-[#0065FE]"
+            className="text-[#0065FE] font-semibold  px-3 flex items-center justify-center w-1/4 rounded-full hover:bg-[#0065FE] hover:text-white  hover:border-[#0065FE]"
             href={'/login'}
           >
             Login
           </Link>
         )}
         <Link
-          href={'#try'}
-          className={
-            router.pathname === '/dashboard' || `/dashboard/${slug}`
-              ? 'hidden'
-              : 'text-white font-semibold border-2 px-4 py-2 border-none outline-none rounded-full bg-[#0065FE] hover:bg-[#0e54bd] lg:w-[8rem]  flex items-center justify-center transition ease-in-out delay-75'
-          }
+          href={'/#try'}
+          className="text-white font-semibold border-2 px-4 py-2 border-none outline-none rounded-full bg-[#0065FE] hover:bg-[#0e54bd] lg:w-[8rem]  flex items-center justify-center transition ease-in-out delay-75"
         >
           Try for free
         </Link>
@@ -170,7 +166,7 @@ const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
             </li>
             <li className="my-2">
               <Link
-                href={'#try'}
+                href={'/#try'}
                 className={
                   router.pathname === '/dashboard' || `/dashboard/${slug}`
                     ? 'hidden'

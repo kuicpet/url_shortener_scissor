@@ -103,7 +103,7 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
           </div>
         </div>
         <div className="flex flex-col lg:flex-row w-full my-5 p-3">
-          <div className="lg:w-[40%] flex p-3 flex-col text-left">
+          <div className="lg:w-[40%] flex p-3 flex-col text-left" id="features">
             <div className="flex items-center justify-center">
               <Image src={Line} alt="" className="mx-2" />
               <h2 className="text-[40px] font-bold ">
@@ -265,7 +265,10 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
           </div>
         </div>
         <div className="flex flex-col items-center justify-center  w-full ">
-          <div className="flex flex-col items-center justify-center lg:w-3/4 text-center my-5 p-3">
+          <div
+            className="flex flex-col items-center justify-center lg:w-3/4 text-center my-5 p-3"
+            id="pricing"
+          >
             <div className="flex items-center justify-center text-[40px] font-bold ">
               <Image src={Line} alt="" className="mx-2" />
               <h2>
@@ -406,7 +409,7 @@ const Hero: React.FC<IHero> = ({ title, title2, title3, title4 }) => {
           <div className="w-full lg:h-[523px] short p-2 m-2">
             <ShortenForm />
           </div>
-          <div className="w-full p-2 m-2">
+          <div className="w-full p-2 m-2" id="faqs">
             <Faqs />
           </div>
           <div className="flex flex-col items-center justify-center w-full lg:p-2 m-2 short h-[299px]">

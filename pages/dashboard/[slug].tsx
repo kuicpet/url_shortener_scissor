@@ -25,7 +25,7 @@ const DashboardPage = () => {
   });
 
   useEffect(() => {
-    const fetchUrls = async () => {
+    const fetchUrl = async () => {
       try {
         setLoading(true);
         await axios.get(`/api/track/${slug}`).then((response) => {
@@ -39,7 +39,7 @@ const DashboardPage = () => {
         setLoading(false);
       }
     };
-    fetchUrls();
+    fetchUrl();
   }, [slug]);
   return (
     <div>
@@ -56,7 +56,7 @@ const DashboardPage = () => {
         </div>
         <div className="flex flex-col lg:w-[82%] h-auto m-3 p-2 rounded-md">
           <h2 className="text-xl font-semibold">Shortened Url Details</h2>
-          <div className="border-2 border-black my-3 rounded-lg">
+          <div className="border my-3 rounded-lg bg-white">
             <ul className="p-2">
               <li>
                 <span className="font-semibold">Original Url:</span>{' '}
@@ -67,11 +67,11 @@ const DashboardPage = () => {
               </li>
               <li>
                 <span className="font-semibold"> Number of Clicks:</span>{' '}
-                {urlDetails?.data?.clicks?.length} clicks
+                {urlDetails?.data?.clicks?.length || 0} clicks
               </li>
             </ul>
           </div>
-          <div className="border-2 border-black my-3 h-auto rounded-lg p-2">
+          <div className="border my-3 h-auto rounded-lg p-2 bg-white">
             {loading && (
               <div className="absolute inset-0 z-0 flex justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg">
                 <Loader />

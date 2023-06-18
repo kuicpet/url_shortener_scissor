@@ -67,7 +67,7 @@ export default async function track(req: NextApiRequest, res: NextApiResponse) {
     console.error(error);
     res.status(500).json({
       success: false,
-      message: 'An error occurred while shortening the URL',
+      message: 'An error occurred while fetching the URL',
     });
   }
 }

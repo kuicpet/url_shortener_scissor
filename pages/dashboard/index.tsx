@@ -134,13 +134,13 @@ const Dashboard = () => {
           </p>
         </div>
         <div>
-          <ul className="lg:flex grid md:grid-cols-4 grid-cols-2 gap-2 p-2 flex-col items-center justify-center border-2 border-black rounded-lg">
+          <ul className="lg:flex grid md:grid-cols-4 grid-cols-2 gap-2 p-2 flex-col items-center justify-center border-2 border-black rounded-lg h-auto">
             {filteredUrls.map((url: any, i: number) => (
               <li
                 className="px-3 w-full border border-black cursor-pointer hover:bg-slate-200"
                 key={i}
               >
-                <Link href={`/dashboard/${url?.shortUrl}`}>{url.shortUrl}</Link>
+                <Link href={`/dashboard/${url.shortUrl}`}>{url.shortUrl}</Link>
               </li>
             ))}
           </ul>
