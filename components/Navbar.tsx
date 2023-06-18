@@ -30,6 +30,12 @@ const Links: React.FC<ILinks> = ({ text }) => {
 const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
   const { userProfile, logoutUser }: any = useAuthStore();
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
+  const router = useRouter();
+
+  const normalLink =
+    'font-semibold  px-2 flex items-center justify-center hover:text-[#0065FE]';
+  const activeLink =
+    'font-semibold  px-2 flex items-center justify-center text-[#0065FE]';
 
   return (
     <nav className=" flex lg:justify-between bg-transparent justify-between items-center  px-4 py-1">
@@ -39,29 +45,52 @@ const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
       >
         <Image src={Logo} alt="" />
       </Link>
-      <div className="md:flex flex-initial justify-between w-1/3 text-[#141414] font-semibold hidden">
-        <Link className="focus:text-[#0065FE] hover:text-[#0065FE]" href={'/'}>
+      <div className="md:flex flex-initial justify-between lg:w-1/3 text-[#141414] font-semibold hidden">
+        <Link
+          className={router.pathname === '/urls' ? activeLink : normalLink}
+          href={'/'}
+        >
           My URLs
         </Link>
-        <Link className="focus:text-[#0065FE] hover:text-[#0065FE]" href={'/'}>
+        <Link
+          className={router.pathname === '/features' ? activeLink : normalLink}
+          href={'/'}
+        >
           Features
         </Link>
-        <Link className="focus:text-[#0065FE] hover:text-[#0065FE]" href={'/'}>
+        <Link
+          className={router.pathname === '/pricing' ? activeLink : normalLink}
+          href={'/'}
+        >
           Pricing
         </Link>
-        <Link className="focus:text-[#0065FE] hover:text-[#0065FE]" href={'/'}>
+        <Link
+          className={router.pathname === '/analytics' ? activeLink : normalLink}
+          href={'/'}
+        >
           Analytics
         </Link>
-        <Link className="focus:text-[#0065FE] hover:text-[#0065FE]" href={'/'}>
+        <Link
+          className={router.pathname === '/faqs' ? activeLink : normalLink}
+          href={'/'}
+        >
           FAQS
         </Link>
       </div>
-      <div className="md:flex justify-around w-1/2  md:w-1/4 hidden">
+      <div className="md:flex justify-between lg:w-1/3  md:w-1/2 hidden ml-auto">
         {userProfile ? (
           <>
+            <Link
+              className={
+                router.pathname === '/dashboard' ? activeLink : normalLink
+              }
+              href={'/dashboard'}
+            >
+              Dashboard
+            </Link>
             <Button
               icon={<AiOutlineLogout />}
-              className="text-[red] font-semibold  pl-3 w-1/2 flex items-center justify-center border-2 border-[red] rounded-full hover:bg-[red] hover:text-white"
+              className="text-[red] font-semibold  pl-3  flex items-center justify-center border-2 border-[red] rounded-full hover:bg-[red] hover:text-white"
               text="Logout"
               onClick={() => logoutUser()}
             />

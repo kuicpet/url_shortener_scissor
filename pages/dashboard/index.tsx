@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
-import { Bar } from 'react-chartjs-2';
+import { Bar, Pie, Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,6 +8,7 @@ import {
   PointElement,
   LineElement,
   BarElement,
+  ArcElement,
   Title,
   Tooltip,
   Legend,
@@ -27,6 +28,17 @@ const Dashboard = () => {
   const [urls, setUrls]: any = useState([]);
   const chartRef = useRef<HTMLCanvasElement>(null);
 
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    BarElement,
+    ArcElement,
+    Title,
+    Tooltip,
+    Legend
+  );
   useEffect(() => {
     if (!userProfile) {
       router.push('/login');
@@ -50,31 +62,25 @@ const Dashboard = () => {
     fetchUrls();
   }, []);
 
-  ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
-  );
-
+  const filteredUrls = urls.filter((url: any) => url.clicks.length > 1);
   const chartData = {
-    labels: urls.map((url: any) => url.shortUrl),
+    labels: filteredUrls.map((url: any) => url.shortUrl),
     datasets: [
       {
         label: 'Clicks',
-        data: urls.map((url: any) => url.clicks.length),
-        backgroundColor: '#005AE2',
+        data: filteredUrls.map((url: any) => url.clicks.length),
+        backgroundColor: '#1f78b4',
+        borderColor: '#1f78b4',
+        yAxisID: 'y',
       },
       {
         label: 'IpAddresses',
-        data: urls.map((url: any) =>
-          url.clicks.map((click: any) => click.ipAddress)
+        data: filteredUrls.map((url: any) =>
+          url.clicks.map((click: any) => click?.ipAddress.length)
         ),
-        backgroundColor: 'red',
+        backgroundColor: '#a6cee3',
+        borderColor: '#a6cee3',
+        yAxisID: 'y1',
       },
     ],
   };
@@ -88,6 +94,21 @@ const Dashboard = () => {
       title: {
         display: true,
         text: 'Url Ananlytics',
+      },
+    },
+    scales: {
+      y: {
+        type: 'linear' as const,
+        display: true,
+        position: 'left' as const,
+      },
+      y1: {
+        type: 'linear' as const,
+        display: true,
+        position: 'right' as const,
+        grid: {
+          drawOnChartArea: false,
+        },
       },
     },
   };
@@ -105,7 +126,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="flex flex-col lg:w-[80%] h-auto m-3 p-2 rounded-md bg-white">
-        <Bar data={chartData} options={chartOptions} />
+        <Line data={chartData} options={chartOptions} />
       </div>
     </div>
   );
