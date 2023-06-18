@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Bar, Pie, Line } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -26,7 +26,6 @@ const Dashboard = () => {
   const { userProfile }: any = useAuthStore();
   const [loading, setLoading] = useState(false);
   const [urls, setUrls]: any = useState([]);
-  const chartRef = useRef<HTMLCanvasElement>(null);
 
   ChartJS.register(
     CategoryScale,
@@ -120,12 +119,34 @@ const Dashboard = () => {
           <Loader />
         </div>
       )}
-      <div className="flex flex-col lg:w-[20%] bg-white lg:h-[92vh]  m-3 rounded-sm p-2">
+      <div className="flex flex-col lg:w-[20%] bg-white lg:h-auto  m-3 rounded-sm p-2">
         <div className="flex items-center justify-center  px-2">
-          <p className="font-semibold text-lg">Hi {userProfile?.username}</p>
+          <p className="font-semibold text-lg">
+            Hi, {userProfile?.username || 'User'}
+          </p>
+        </div>
+        <div className="flex flex-col items-start justify-center my-3 border-2 border-black p-2 rounded-lg">
+          <p className="font-semibold text-sm">
+            Total Urls Generated: {urls?.length} urls
+          </p>
+          <p className="font-semibold text-sm">
+            Active Urls: {filteredUrls?.length} urls
+          </p>
+        </div>
+        <div>
+          <ul className="lg:flex grid md:grid-cols-4 grid-cols-2 gap-2 p-2 flex-col items-center justify-center border-2 border-black rounded-lg">
+            {filteredUrls.map((url: any, i: number) => (
+              <li
+                className="px-3 w-full border border-black cursor-pointer hover:bg-slate-200"
+                key={i}
+              >
+                <Link href={`/dashboard/${url?.shortUrl}`}>{url.shortUrl}</Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
-      <div className="flex flex-col lg:w-[80%] h-auto m-3 p-2 rounded-md bg-white">
+      <div className="flex flex-col lg:w-[80%] h-[92vh] m-3 p-2 rounded-md bg-white">
         <Line data={chartData} options={chartOptions} />
       </div>
     </div>

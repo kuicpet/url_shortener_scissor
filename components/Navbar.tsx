@@ -31,6 +31,7 @@ const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
   const { userProfile, logoutUser }: any = useAuthStore();
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
   const router = useRouter();
+  const { slug } = router.query;
 
   const normalLink =
     'font-semibold  px-2 flex items-center justify-center hover:text-[#0065FE]';
@@ -77,7 +78,13 @@ const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
           FAQS
         </Link>
       </div>
-      <div className="md:flex justify-between lg:w-1/3  md:w-1/2 hidden ml-auto">
+      <div
+        className={
+          userProfile
+            ? `md:flex justify-between lg:w-1/3  md:w-1/2 hidden ml-auto`
+            : 'md:flex justify-between lg:w-1/3  md:w-1/2 hidden'
+        }
+      >
         {userProfile ? (
           <>
             <Link
@@ -105,7 +112,11 @@ const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
         )}
         <Link
           href={'#try'}
-          className="text-white font-semibold border-2 px-4 py-2 border-none outline-none rounded-full bg-[#0065FE] hover:bg-[#0e54bd] lg:w-[8rem]  flex items-center justify-center transition ease-in-out delay-75"
+          className={
+            router.pathname === '/dashboard' || `/dashboard/${slug}`
+              ? 'hidden'
+              : 'text-white font-semibold border-2 px-4 py-2 border-none outline-none rounded-full bg-[#0065FE] hover:bg-[#0e54bd] lg:w-[8rem]  flex items-center justify-center transition ease-in-out delay-75'
+          }
         >
           Try for free
         </Link>
@@ -159,8 +170,12 @@ const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
             </li>
             <li className="my-2">
               <Link
-                href={'/#try'}
-                className="text-white font-semibold  px-4 py-2 border-none outline-none rounded-full bg-[#0065FE] lg:w-[8rem]  flex items-center justify-center"
+                href={'#try'}
+                className={
+                  router.pathname === '/dashboard' || `/dashboard/${slug}`
+                    ? 'hidden'
+                    : 'text-white font-semibold border-2 px-4 py-2 border-none outline-none rounded-full bg-[#0065FE] hover:bg-[#0e54bd] lg:w-[8rem]  flex items-center justify-center transition ease-in-out delay-75'
+                }
               >
                 Try for free
               </Link>
