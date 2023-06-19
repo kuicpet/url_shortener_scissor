@@ -71,7 +71,7 @@ const DashboardPage = () => {
               </li>
             </ul>
           </div>
-          <div className="border my-3 h-auto rounded-lg p-2 bg-white">
+          <div className="flex flex-col justify-between w-full border my-3 h-auto rounded-lg p-2 bg-white">
             {loading && (
               <div className="absolute inset-0 z-0 flex justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg">
                 <Loader />
