@@ -81,7 +81,7 @@ const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
       <div
         className={
           userProfile
-            ? `md:flex justify-between lg:w-1/3  md:w-1/2`
+            ? `md:flex justify-between lg:w-1/3  md:w-1/2 hidden`
             : 'md:flex justify-around lg:w-1/3  md:w-1/2 hidden ml-auto'
         }
       >
