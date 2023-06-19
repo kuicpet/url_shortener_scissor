@@ -39,7 +39,7 @@ const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
     'font-semibold  px-2 flex items-center justify-center text-[#0065FE]';
 
   return (
-    <nav className=" flex lg:justify-between bg-transparent justify-between items-center  px-4 py-1">
+    <nav className=" flex lg:justify-between bg-transparent justify-between items-center px-4 py-1">
       <Link
         href={`/`}
         className="flex items-center justify-between p-2 my-2 mx-5"

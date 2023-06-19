@@ -131,7 +131,7 @@ const LoginPage = () => {
                 />
                 <button
                   type="button"
-                  className="nx-5 text-[#005AE2]"
+                  className="px-5 text-[#005AE2]"
                   onClick={() => handleTogglePassword()}
                 >
                   {showPassword ? <RiEyeFill /> : <RiEyeOffFill />}

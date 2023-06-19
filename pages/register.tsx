@@ -145,7 +145,7 @@ const RegisterPage = () => {
                 />
                 <button
                   type="button"
-                  className="nx-5 text-[#005AE2]"
+                  className="px-5 text-[#005AE2]"
                   onClick={() => handleTogglePassword()}
                 >
                   {showPassword ? <RiEyeFill /> : <RiEyeOffFill />}
@@ -163,7 +163,7 @@ const RegisterPage = () => {
                 />
                 <button
                   type="button"
-                  className="nx-5 text-[#005AE2]"
+                  className="px-5 text-[#005AE2]"
                   onClick={() => handleToggleConfirmPassword()}
                 >
                   {showPassword ? <RiEyeFill /> : <RiEyeOffFill />}
