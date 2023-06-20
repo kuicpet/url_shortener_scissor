@@ -133,7 +133,7 @@ const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
         )}
         {/**Mobile Menu */}
         {toggleMenu && (
-          <ul className="z-10 text-lg fixed top-0 -right-2 p-3 w-[70vw] h-screen shadow-2xl md:hidden list-none flex flex-col justify-start items-center rounded-md  text-black animate-slide-in  bg-white">
+          <ul className="z-10 text-lg fixed top-0 -right-2 p-3 w-[70vw] h-screen shadow-2xl md:hidden list-none flex flex-col justify-start rounded-md  text-black animate-slide-in  bg-white">
             <li className="text-xl w-full my-2">
               <HiOutlineX
                 fontSize={28}
@@ -149,12 +149,22 @@ const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
 
             <li className="my-2">
               {userProfile ? (
-                <Button
-                  icon={<AiOutlineLogout />}
-                  className="text-[red] font-semibold  pl-3 w-full py-1 flex items-center justify-center border-2 border-[red] rounded-full hover:bg-[red] hover:text-white"
-                  text="Logout"
-                  onClick={() => logoutUser()}
-                />
+                <>
+                  <Link
+                    className={
+                      router.pathname === '/dashboard' ? activeLink : normalLink
+                    }
+                    href={'/dashboard'}
+                  >
+                    Dashboard
+                  </Link>
+                  <Button
+                    icon={<AiOutlineLogout />}
+                    className="text-[red] font-semibold  pl-3 w-full py-1 flex items-center justify-center border-2 border-[red] rounded-full hover:bg-[red] hover:text-white my-3"
+                    text="Logout"
+                    onClick={() => logoutUser()}
+                  />
+                </>
               ) : (
                 <Link
                   className="text-[#0065FE] font-semibold  px-4 py-1 w-[124px] border-2 border-[#0065FE] flex items-center justify-center hover:bg-[#0065FE]  rounded-full  hover:text-white"
@@ -167,11 +177,7 @@ const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
             <li className="my-2">
               <Link
                 href={'/#try'}
-                className={
-                  router.pathname === '/dashboard' || `/dashboard/${slug}`
-                    ? 'hidden'
-                    : 'text-white font-semibold border-2 px-4 py-2 border-none outline-none rounded-full bg-[#0065FE] hover:bg-[#0e54bd] lg:w-[8rem]  flex items-center justify-center transition ease-in-out delay-75'
-                }
+                className="text-white font-semibold border-2 px-4 py-2 border-none outline-none rounded-full bg-[#0065FE] hover:bg-[#0e54bd] lg:w-[8rem]  flex items-center justify-center transition ease-in-out delay-75"
               >
                 Try for free
               </Link>
