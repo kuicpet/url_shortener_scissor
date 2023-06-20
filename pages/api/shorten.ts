@@ -37,11 +37,10 @@ export default async function shorten(
     if (customText) {
       const existingUrl = await Url.findOne({ shortUrl: customText });
       if (existingUrl) {
-        res.status(400).json({
-          success: false,
-          message: 'Custom text already exists.Please choose another',
+        return res.status(200).json({
+          shortUrl: existingUrl.shortUrl,
+          message: 'Url already exist',
         });
-        return;
       }
       shortUrl = customText;
     } else if (customDomian && customText) {
@@ -66,11 +65,11 @@ export default async function shorten(
     });*/
     const newUrl: IUrl = new Url({
       originalUrl: originalUrl,
-      shortUrl: shortUrl,
+      shortUrl: shortUrl || `${customDomian}/${shortUrl}`,
     });
     await newUrl.save();
 
-    console.log(newUrl);
+    // console.log(newUrl);
     // const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
     // send response to client

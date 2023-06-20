@@ -61,7 +61,7 @@ const ShortenForm: React.FC = () => {
       setTimeout(() => {
         setShowConfetti(false);
       }, 6000);
-      // console.log(response.data);
+      console.log(response.data);
       setShortUrl(response.data.shortUrl);
 
       /* if (qrCodeRef.current) {

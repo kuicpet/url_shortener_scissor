@@ -11,7 +11,7 @@ import { Button, Company, Loader, Meta } from '../components';
 import useAuthStore from '../store/authStore';
 
 const LoginPage = () => {
-  const { userProfile, loginUser } = useAuthStore();
+  const { loginUser } = useAuthStore();
   const router = useRouter();
 
   const [email, setEmail] = useState('');

@@ -4,6 +4,7 @@ export interface IUser extends Document {
   username: string;
   email: string;
   password: string;
+  shortenedUrls: Array<{ originalUrl: string; shortUrl: string }>;
 }
 
 const userSchema = new Schema<IUser>(
@@ -21,6 +22,18 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: true,
     },
+    shortenedUrls: [
+      {
+        originalUrl: {
+          type: String,
+          required: true,
+        },
+        shortUrl: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
   },
   {
     timestamps: true,
