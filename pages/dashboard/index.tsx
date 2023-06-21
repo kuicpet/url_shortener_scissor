@@ -92,7 +92,7 @@ const Dashboard = () => {
       },
       title: {
         display: true,
-        text: 'Url Ananlytics',
+        text: 'Url Analytics',
       },
     },
     scales: {
