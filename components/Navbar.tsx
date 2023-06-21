@@ -31,7 +31,7 @@ const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
   const { userProfile, logoutUser }: any = useAuthStore();
   const [toggleMenu, setToggleMenu] = useState<boolean>(false);
   const router = useRouter();
-  const { slug } = router.query;
+  // const { slug } = router.query;
 
   const normalLink =
     'font-semibold  px-2 flex items-center justify-center hover:text-[#0065FE]';

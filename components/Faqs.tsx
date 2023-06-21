@@ -11,35 +11,35 @@ const faqs = [
   },
   {
     ques: 'Is it necessary to create an account to use the URL shortening service?',
-    res: '',
+    res: 'It is not necessary to create an account to use the URL shortening service.',
   },
   {
     ques: 'Are the shortened links permanent? Will they expire?',
-    res: '',
+    res: 'The shortened links are permanent and they will not expire.',
   },
   {
     ques: 'Are there any limitations on the number of URLs I can shorten?',
-    res: '',
+    res: 'For now there are no limitations on the number of URLs you can shortened.',
   },
   {
     ques: 'Can I customize the shortened URLs to reflect my brand or content?',
-    res: '',
+    res: 'You can customize the shotened URLs to reflect your brand or content.',
   },
   {
     ques: 'Can I track the performance of my shortened URLs?',
-    res: '',
+    res: 'Yes you can track the performance of your shortened URLs.',
   },
   {
     ques: 'How secure is the URL shortening service? Are the shortened links protected against spam or malicious activity?',
-    res: '',
+    res: 'Scissor URL shortening service is secure for use.',
   },
   {
     ques: 'What is a QR code and what can it do?',
-    res: '',
+    res: 'A QR code is a two-dimensional barcode that can store and encode information.',
   },
   {
     ques: 'Is there an API available for integrating the URL shortening service into my own applications or websites?',
-    res: '',
+    res: 'Presently not API available but in the future there will be.',
   },
 ];
 const Faqs: React.FC = () => {
@@ -88,7 +88,7 @@ const Faqs: React.FC = () => {
                 </div>
               </div>
               {activeIndex === index && (
-                <div className="flex items-center justify-center text-justify shadow-md p-2 rounded-sm ">
+                <div className="flex items-center justify-start text-justify shadow-md p-2 rounded-sm ">
                   <p className="">{item.res}</p>
                 </div>
               )}
