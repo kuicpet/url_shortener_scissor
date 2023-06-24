@@ -85,13 +85,13 @@ const LoginPage = () => {
             <h2 className="my-4">Log in with</h2>
           </div>
           <div className="flex w-3/4  my-3 justify-between gap-2">
-            <button className="text-lg flex items-center justify-center bg-[#0065FE] text-white rounded-sm h-[40px] w-1/2">
+            <button className="text-lg flex items-center justify-center bg-[#0065FE] text-white rounded-sm h-[40px] w-1/2 cursor-not-allowed">
               <span className="mx-2">
                 <Image src={Google} alt="" />
               </span>
               Google
             </button>
-            <button className="text-lg flex items-center justify-center bg-[#0065FE] text-white rounded-sm h-[40px] w-1/2">
+            <button className="text-lg flex items-center justify-center bg-[#0065FE] text-white rounded-sm h-[40px] w-1/2 cursor-not-allowed">
               <span className="mx-2">
                 <Image src={Apple} alt="" />
               </span>
@@ -125,7 +125,7 @@ const LoginPage = () => {
                   minLength={6}
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Password"
-                  className="text-black  text-sm  focus:ring-black focus:border-black outline-none block w-[95%] p-3  placeholder:text-[#A0B1C0]"
+                  className="text-black ml-1  text-sm  focus:ring-black focus:border-black outline-none block w-[95%] p-3  placeholder:text-[#A0B1C0]"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -142,7 +142,7 @@ const LoginPage = () => {
               </div>
               <div>
                 <Button
-                  disabled={!email || !password}
+                  disabled={!email || !password || password.length < 6}
                   loading={loading}
                   altText="Logging in..."
                   text="Log in"

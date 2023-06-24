@@ -139,7 +139,7 @@ const RegisterPage = () => {
                   minLength={6}
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Password"
-                  className="text-black  text-sm   outline-none block w-[95%] p-3  placeholder:text-[#A0B1C0]"
+                  className="text-black ml-1  text-sm   outline-none block w-[95%] p-3  placeholder:text-[#A0B1C0]"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -156,7 +156,7 @@ const RegisterPage = () => {
                   required
                   type={showConfirmPassword ? 'text' : 'password'}
                   placeholder="Retype Password"
-                  className=" text-black  text-sm   outline-none block w-[95%] p-3  placeholder:text-[#A0B1C0]"
+                  className=" text-black  text-sm ml-1   outline-none block w-[95%] p-3  placeholder:text-[#A0B1C0]"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   minLength={6}
@@ -178,7 +178,11 @@ const RegisterPage = () => {
               <div>
                 <Button
                   disabled={
-                    !username || !email || !password || !confirmPassword
+                    !username ||
+                    !email ||
+                    !password ||
+                    !confirmPassword ||
+                    password.length < 6
                   }
                   loading={loading}
                   altText="Signing up with Email..."
