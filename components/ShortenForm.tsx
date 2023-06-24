@@ -47,10 +47,11 @@ const ShortenForm: React.FC = () => {
     try {
       setLoading(true);
       const response = await axios.post('/api/shorten', {
-        originalUrl,
-        customText,
-        customDomain,
+        originalUrl: originalUrl,
+        customText: customText,
+        customDomain: customDomain,
       });
+
       toast.success(response.data.message, {
         style: {
           color: 'white',
@@ -119,6 +120,16 @@ const ShortenForm: React.FC = () => {
     }
   };
 
+  // Clear Results
+  const clearResults = () => {
+    localStorage.removeItem('shortUrl');
+    setShortUrl('');
+    setOriginalUrl('');
+    setCustomText('');
+    setCustomDomain('');
+  };
+
+  // User Navigation
   const navigate = () => {
     if (userProfile) {
       router.push(`/dashboard/${shortUrl}`);
@@ -126,6 +137,7 @@ const ShortenForm: React.FC = () => {
       router.push(`/login`);
     }
   };
+
   return (
     <section
       id="try"
@@ -186,6 +198,17 @@ const ShortenForm: React.FC = () => {
             </span>
             and Use of Cookies.
           </p>
+          {shortUrl && (
+            <>
+              <button
+                className="font-medium border-2 border-[red] text-[red] rounded-full  w-full lg:w-1/2 sm:w-auto px-5 py-2.5 text-center hover:bg-[red] hover:text-white transition ease-in-out delay-75"
+                type="button"
+                onClick={() => clearResults()}
+              >
+                Reset
+              </button>
+            </>
+          )}
         </form>
         {/*<div className="border">
           {urlDetails && <UrlDetails url={urlDetails} />}

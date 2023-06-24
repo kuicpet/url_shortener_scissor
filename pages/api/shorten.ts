@@ -8,7 +8,8 @@ export default async function shorten(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { originalUrl, customText, customDomian } = req.body;
+  const { originalUrl, customText, customDomain } = req.body;
+
   const urlPattern =
     /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i ||
     /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z0-9\u00a1-\uffff][a-z0-9\u00a1-\uffff_-]{0,62})?[a-z0-9\u00a1-\uffff]\.)+(?:[a-z\u00a1-\uffff]{2,}\.?))(?::\d{2,5})?(?:[/?#]\S*)?$/i;
@@ -30,6 +31,7 @@ export default async function shorten(
       return res.status(400).json({
         success: false,
         message: 'This Url has already been shortened',
+        // shortUrl: existingOriginalurl.shortUrl,
       });
     }
     // Generate a unique short url
@@ -43,9 +45,9 @@ export default async function shorten(
         });
       }
       shortUrl = customText;
-    } else if (customDomian && customText) {
+    } else if (customDomain && customText) {
       const existingCustomUrl = await Url.findOne({
-        shorturl: `${customDomian}/${customText}`,
+        shorturl: `${customDomain}/${customText}`,
       });
       if (existingCustomUrl) {
         res.status(400).json({
@@ -54,7 +56,7 @@ export default async function shorten(
         });
         return;
       }
-      shortUrl = `${customDomian}/${customText}`;
+      shortUrl = `${customDomain}/${customText}`;
     } else {
       shortUrl = shortid.generate();
     }
@@ -65,7 +67,7 @@ export default async function shorten(
     });*/
     const newUrl: IUrl = new Url({
       originalUrl: originalUrl,
-      shortUrl: shortUrl || `${customDomian}/${shortUrl}`,
+      shortUrl: customDomain ? `${customDomain}/${shortUrl}` : shortUrl,
     });
     await newUrl.save();
 
