@@ -14,7 +14,7 @@ export default async function redirect(
       // url.clicks++;
       await url.save();
       // Redirect to originalUrl
-      return res.status(301).redirect(url.originalUrl);
+      return res.status(301).redirect(url.originalUrl || url.customDomain);
     } else {
       return res.status(404).json({ success: false, message: 'Url not Found' });
     }
