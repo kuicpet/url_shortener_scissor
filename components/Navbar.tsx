@@ -6,7 +6,7 @@ import { HiOutlineMenuAlt4, HiOutlineX } from 'react-icons/hi';
 import { AiOutlineLogout } from 'react-icons/ai';
 import useAuthStore from '../store/authStore';
 
-import Logo from '../assets/Logo.svg';
+import logo from '../assets/logo.png';
 import Button from './Button';
 
 interface ILinks {
@@ -44,7 +44,7 @@ const Navbar: React.FC<INavbar> = ({ isDashboardPage }) => {
         href={`/`}
         className="flex items-center justify-between p-2 my-2 mx-5"
       >
-        <Image src={Logo} alt="" />
+        <Image src={logo} alt="" />
       </Link>
       <div className="md:flex flex-initial justify-between lg:w-1/3 text-[#141414] font-semibold hidden">
         <Link

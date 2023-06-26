@@ -1,26 +1,39 @@
 import React from 'react';
-import { render, screen, cleanup } from '@testing-library/react';
-import { Button } from '../components';
+import { render, fireEvent } from '@testing-library/react';
+import Button from '../components/Button';
 
-/**
- * @jest-environment jsdom
- */
-
-afterEach(() => {
-  cleanup();
+test('renders button with text', () => {
+  const { getByText } = render(<Button text="Click me" />);
+  const buttonElement = getByText('Click me');
+  expect(buttonElement).toBeInTheDocument();
 });
 
-describe('Button component', () => {
-  render(<Button text="Click me" />);
-  const button = screen.getByRole('button');
+test('calls onClick function when clicked', () => {
+  const handleClick = jest.fn();
+  const { getByText } = render(
+    <Button text="Click me" onClick={handleClick} />
+  );
+  const buttonElement = getByText('Click me');
+  fireEvent.click(buttonElement);
+  expect(handleClick).toHaveBeenCalledTimes(1);
+});
 
-  // test 1
-  test('Button Rendering', () => {
-    expect(button).toBeInTheDocument();
-  });
+test('renders loading state', () => {
+  const { getByText } = render(<Button text="Submit" loading />);
+  const loadingElement = getByText('Loading...');
+  expect(loadingElement).toBeInTheDocument();
+});
 
-  // test 2
-  test('Button Text', () => {
-    expect(button).toHaveTextContent('Click me');
-  });
+test('renders button with icon', () => {
+  const { getByTestId } = render(
+    <Button text="Click me" icon={<span data-testid="icon" />} />
+  );
+  const iconElement = getByTestId('icon');
+  expect(iconElement).toBeInTheDocument();
+});
+
+test('renders button as disabled', () => {
+  const { getByText } = render(<Button text="Click me" disabled />);
+  const buttonElement = getByText('Click me');
+  expect(buttonElement).toBeDisabled();
 });
