@@ -67,7 +67,9 @@ export default async function shorten(
     });*/
     const newUrl: IUrl = new Url({
       originalUrl: originalUrl,
-      shortUrl: customDomain ? `${customDomain}/${shortUrl}` : shortUrl,
+      shortUrl: customDomain
+        ? `${customDomain}/${shortUrl}`
+        : `${req.headers.host}/${shortUrl}`,
     });
     await newUrl.save();
 

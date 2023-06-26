@@ -1,7 +1,7 @@
-Scissor
+# Scissor
 Scissor is a URL shortening platform that aims to disrupt the industry by providing a simple and efficient solution for shortening URLs. The platform offers several features, including URL shortening, custom URLs, QR code generation, and basic analytics.
 
-Requirements And Implementation Guide:
+## Requirements And Implementation Guide:
 URL Shortening:
 Scissor allows users to shorten URLs by pasting a long URL into the Scissor platform, and a shorter URL gets automatically generated. The shortened URL is designed to be as short as possible, making it easy to share on social media or through other channels.
 
@@ -9,19 +9,20 @@ Custom URLs:
 Scissor also allows users to customize their shortened URLs. Users can choose their own custom domain name and customize the URL to reflect their brand or content. This feature is particularly useful for individuals or small businesses who want to create branded links for their content.
 
 QR Code Generation:
-Scissor allows users to generate QR codes for the shortened URLs. Users can download the QR code image and use it in their promotional materials or on their website. This feature will be implemented using a third-party QR code generator API, which can be integrated into the Scissor platform.
+Scissor allows users to generate QR codes for the shortened URLs. Users can download the QR code image and use it in their promotional materials or on their website. This feature was implemented using a third-party QR code generator API, which was integrated into the Scissor platform.
 
 Analytics:
 Scissor provides basic analytics that allow users to track their shortened URL's performance. Users can see how many clicks their shortened URL has received and where the clicks are coming from. This feature will be implemented using Firebase's built-in analytics feature.
 
-Best Practices:
-Build and deploy a scalable codebase with proper code linting and formatting using Prettier and ESLint.
-Use TypeScript with either Vue.js or React, and ensure necessary SEO practices are in place.
-Choose a backend technology like Firebase or Hasura to store user data and implement authentication.
-Allow users of Scissor to write content with markdown.
-Implement form validation to ensure data integrity and user experience.
-Include at least 2 unit tests and 3 component tests in the codebase.
-Getting Started
+## Best Practices:
+1. Scissor was built and deployed with a scalable codebase with proper code linting and formatting using Prettier and ESLint.
+2. TypeScript was used with NextJS which runs on React, using best SEO practice.
+3. MongoDB was used to store user data and implement authentication as well as the shortened urls.
+4. Users of Scissor are able write content with markdown.
+5. Form validation was do  to ensure data integrity and user experience.
+6. At least 2 unit tests and 3 component tests were added to the codebase.
+
+### Getting Started
 First, run the development server:
 
 bash

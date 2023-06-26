@@ -245,7 +245,7 @@ const ShortenForm: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {`${customDomain}/${shortUrl}`}
+                    {`${shortUrl}`}
                   </a>
 
                   <Button
