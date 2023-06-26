@@ -4,6 +4,7 @@ import { connect } from '../../utils/db';
 
 import Url, { IUrl } from '../../models/Url';
 
+const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}`;
 export default async function shorten(
   req: NextApiRequest,
   res: NextApiResponse
@@ -69,7 +70,7 @@ export default async function shorten(
       originalUrl: originalUrl,
       shortUrl: customDomain
         ? `${customDomain}/${shortUrl}`
-        : `${req.headers.host}/${shortUrl}`,
+        : `${baseUrl}/${shortUrl}`,
     });
     await newUrl.save();
 

@@ -13,7 +13,7 @@ import { useRouter } from 'next/router';
 import { IoAnalytics } from 'react-icons/io5';
 import useAuthStore from '../store/authStore';
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}`;
 const ShortenForm: React.FC = () => {
   const { userProfile } = useAuthStore();
   const qrCodeRef = useRef<any>(null);
@@ -170,6 +170,7 @@ const ShortenForm: React.FC = () => {
                 className="border border-[#3284FF]  text-[#3284FF]  text-sm  focus:ring-black focus:border-black outline-none block w-full lg:w-1/2 p-3 rounded-lg placeholder:text-[#3284FF]"
                 type="text"
                 placeholder="Customize domain"
+                defaultValue={baseUrl}
                 value={customDomain}
                 onChange={(e) => setCustomDomain(e.target.value)}
               />
