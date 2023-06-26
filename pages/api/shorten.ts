@@ -4,86 +4,88 @@ import { connect } from '../../utils/db';
 
 import Url, { IUrl } from '../../models/Url';
 
-const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}`;
 export default async function shorten(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const { originalUrl, customText, customDomain } = req.body;
 
-  const urlPattern =
-    /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i ||
-    /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z0-9\u00a1-\uffff][a-z0-9\u00a1-\uffff_-]{0,62})?[a-z0-9\u00a1-\uffff]\.)+(?:[a-z\u00a1-\uffff]{2,}\.?))(?::\d{2,5})?(?:[/?#]\S*)?$/i;
+  // URL validation
+  const urlPattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
   if (!urlPattern.test(originalUrl)) {
     return res
       .status(400)
-      .json({ success: false, message: 'Invalid Url format' });
+      .json({ success: false, message: 'Invalid URL format' });
   }
+
   if (!originalUrl) {
-    return res.status(400).json({ error: 'Please enter a url' });
+    return res.status(400).json({ error: 'Please enter a URL' });
   }
+
   try {
-    // Connect to db
+    // Connect to the database
     await connect();
 
-    // Check if originalurl already exists in db
-    const existingOriginalurl = await Url.findOne({ originalUrl });
-    if (existingOriginalurl) {
+    // Check if the original URL already exists in the database
+    const existingOriginalUrl = await Url.findOne({ originalUrl });
+    if (existingOriginalUrl) {
       return res.status(400).json({
         success: false,
-        message: 'This Url has already been shortened',
-        // shortUrl: existingOriginalurl.shortUrl,
+        message: 'This URL has already been shortened',
       });
     }
-    // Generate a unique short url
+
+    // Generate a unique short URL
     let shortUrl: string;
     if (customText) {
       const existingUrl = await Url.findOne({ shortUrl: customText });
       if (existingUrl) {
         return res.status(200).json({
           shortUrl: existingUrl.shortUrl,
-          message: 'Url already exist',
+          message: 'URL already exists',
         });
       }
       shortUrl = customText;
     } else if (customDomain && customText) {
       const existingCustomUrl = await Url.findOne({
-        shorturl: `${customDomain}/${customText}`,
+        shortUrl: `${customDomain}/${customText}`,
       });
       if (existingCustomUrl) {
-        res.status(400).json({
+        return res.status(400).json({
           success: false,
-          massage: 'Custom Domain already exists.Please choose another',
+          message: 'Custom domain already exists. Please choose another',
         });
-        return;
       }
       shortUrl = `${customDomain}/${customText}`;
     } else {
       shortUrl = shortid.generate();
     }
-    // add url to db
-    /*const newUrl: IUrl = await Url.create({
-      originalUrl: originalUrl,
-      shortUrl: shortUrl,
-    });*/
+
+    // Create a new click object
+    const newClick = {
+      clickedAt: new Date(),
+      ipAddress:
+        req.headers['x-forwarded-for'] || req.connection.remoteAddress || '',
+      location: '', // Set the initial location value to an empty string or provide the correct value
+    };
+
+    // Create a new URL object
     const newUrl: IUrl = new Url({
-      originalUrl: originalUrl,
-      shortUrl: customDomain
-        ? `${customDomain}/${shortUrl}`
-        : `${baseUrl}/${shortUrl}`,
+      originalUrl,
+      shortUrl: customDomain ? `${customDomain}/${shortUrl}` : shortUrl,
+      clicks: [newClick],
     });
+
+    // Save the URL object to the database
     await newUrl.save();
 
-    // console.log(newUrl);
-    // const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-
-    // send response to client
+    // Return the response to the client
     return res.status(201).json({
       success: true,
-      message: 'Url successfully shortened',
+      message: 'URL successfully shortened',
       shortUrl: newUrl.shortUrl,
       originalUrl: newUrl.originalUrl,
-      customDomian: newUrl.customDomain,
+      customDomain: newUrl.customDomain,
       clicks: newUrl.clicks,
     });
   } catch (error) {

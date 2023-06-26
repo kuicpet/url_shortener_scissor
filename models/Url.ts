@@ -28,7 +28,7 @@ const urlSchema = new Schema<IUrl>(
     },
     customDomain: {
       type: String,
-      unique: true,
+      unique: { sparse: true },
     },
     shortUrl: {
       type: String,
@@ -51,7 +51,7 @@ const urlSchema = new Schema<IUrl>(
         },
         location: {
           type: String,
-          required: true,
+          required: false,
         },
       },
     ],

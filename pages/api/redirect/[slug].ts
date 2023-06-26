@@ -9,12 +9,14 @@ export default async function redirect(
   await connect();
   const { slug } = req.query;
   try {
-    const url = await Url.findOne({ shortUrl: slug });
+    const url = await Url.findOne({
+      $or: [{ shortUrl: slug }, { customText: slug }, { customDomain: slug }],
+    });
     if (url) {
       // url.clicks++;
       await url.save();
       // Redirect to originalUrl
-      return res.status(301).redirect(url.originalUrl || url.customDomain);
+      return res.status(301).redirect(url.originalUrl);
     } else {
       return res.status(404).json({ success: false, message: 'Url not Found' });
     }

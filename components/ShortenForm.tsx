@@ -62,7 +62,7 @@ const ShortenForm: React.FC = () => {
       setTimeout(() => {
         setShowConfetti(false);
       }, 6000);
-      console.log(response.data);
+      // console.log(response.data);
       setShortUrl(response.data.shortUrl);
 
       /* if (qrCodeRef.current) {
@@ -211,16 +211,6 @@ const ShortenForm: React.FC = () => {
             </>
           )}
         </form>
-        {/*<div className="border">
-          {urlDetails && <UrlDetails url={urlDetails} />}
-        </div>
-        <div className="flex items-center justify-center my-2 ">
-          <Button
-            onClick={() => rounter.push('/dashboard')}
-            text="Track your Links"
-            className="lg:ml-5 font-medium border-2 rounded-md text-sm  lg:w-1/2 sm:w-auto px-5 py-1 text-center bg-gradient-to-r from-pink-500 hover:to-yellow-500"
-          />
-        </div>*/}
       </div>
       <div
         className={
@@ -246,7 +236,7 @@ const ShortenForm: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {`${shortUrl}`}
+                    {`${baseUrl}/${shortUrl}`}
                   </a>
 
                   <Button
