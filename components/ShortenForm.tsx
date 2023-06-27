@@ -229,9 +229,9 @@ const ShortenForm: React.FC = () => {
             <div className="w-full">
               <div className="my-3 p-2  text-center w-full bg-white">
                 <p className="font-bold text-[#005AE2]">Shortened Url</p>
-                <div className="flex items-center justify-center p-2">
+                <div className="flex lg:flex-row md:flex-col flex-col  items-center justify-center p-2">
                   <a
-                    className="px-3 underline hover:text-cyan-500 text-[#005AE2]"
+                    className="px-3 my-2 underline hover:text-cyan-500 text-[#005AE2]"
                     href={`api/redirect/${shortUrl}`}
                     target="_blank"
                     rel="noopener noreferrer"
