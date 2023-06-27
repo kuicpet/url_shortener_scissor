@@ -82,7 +82,7 @@ const DashboardPage = () => {
                 ?.slice(steps, steps + pageSize)
                 .map((item: any, i: number) => (
                   <ul key={i} className="">
-                    <li className="flex justify-evenly border p-1">
+                    <li className="flex justify-between border p-1">
                       <span className="flex items-center justify-center">
                         Clicked :
                         <BiTimeFive className="mx-1" />
