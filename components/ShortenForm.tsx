@@ -110,7 +110,7 @@ const ShortenForm: React.FC = () => {
         },
       });
     } catch (error) {
-      console.error('Error copying to clipboard:', error);
+      // console.error('Error copying to clipboard:', error);
       toast.error('An error occurred while copying the Url', {
         style: {
           color: 'white',
