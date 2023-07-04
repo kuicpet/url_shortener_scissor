@@ -17,6 +17,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import axios from 'axios';
 import { CiUser } from 'react-icons/ci';
+import { BiUserCircle } from 'react-icons/bi';
 import Logo from '../../assets/Logo.svg';
 import useAuthStore from '../../store/authStore';
 import { Loader, Meta } from '../../components';
@@ -68,8 +69,8 @@ const Dashboard = () => {
       {
         label: 'Clicks',
         data: filteredUrls.map((url: any) => url.clicks.length),
-        backgroundColor: '#1f78b4',
-        borderColor: '#1f78b4',
+        backgroundColor: '#0065FE',
+        borderColor: '#0065FE',
         yAxisID: 'y',
       },
       {
@@ -125,8 +126,11 @@ const Dashboard = () => {
           </div>
         )}
         <div className="flex flex-col lg:w-[20%] bg-white lg:h-auto  m-3 rounded-sm p-2">
-          <div className="flex items-center justify-center  px-2">
-            <p className="font-semibold text-lg">
+          <div className="flex  items-center justify-center  px-2">
+            <p className="flex items-center lg:justify-between mx-auto lg:w-1/2 font-semibold text-lg">
+              <span>
+                <BiUserCircle className="text-2xl mx-2 lg:m-0" />
+              </span>
               Hi, {userProfile?.username || 'User'}
             </p>
           </div>
