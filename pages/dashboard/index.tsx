@@ -127,7 +127,7 @@ const Dashboard = () => {
         )}
         <div className="flex flex-col lg:w-[20%] bg-white lg:h-auto  m-3 rounded-sm p-2">
           <div className="flex  items-center justify-center  px-2">
-            <p className="flex items-center lg:justify-between mx-auto lg:w-1/2 font-semibold text-lg">
+            <p className="flex items-center lg:justify-center mx-auto lg:w-3/4 w-full font-semibold text-lg">
               <span>
                 <BiUserCircle className="text-2xl mx-2 lg:m-0" />
               </span>
